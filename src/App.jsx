@@ -11,7 +11,7 @@ const PROJECTS_DATA = [
     status: "IN_PROGRESS",
     goal: "Model optimization, safety integration, & autonomy",
     stack: ['Jetson Orin NX', 'TM4C123', 'LiDAR', 'Computer Vision', 'C++/Python'],
-    images: ['/images/igvc_robot.jpg', '/images/igvc_cover_design.png'],
+    images: ['images/igvc_robot.jpg', 'images/igvc_cover_design.png'],
     description: (
       <>
         <p style={{ marginBottom: '1rem' }}>
@@ -55,7 +55,7 @@ const PROJECTS_DATA = [
     goal: "Preemptive kernel with MPU & Shell on ARM Cortex-M4F",
     stack: ['C', 'ARM Assembly', 'TM4C123', 'Memory Protection'],
     repoLink: "https://github.com/Galib2003/RTOS",
-    images: ['/images/rtos_board.jpg'],
+    images: ['images/rtos_board.jpg'],
     description: (
       <>
         <p style={{ marginBottom: '1rem' }}>
@@ -114,11 +114,11 @@ const PROJECTS_DATA = [
     status: "COMPLETED",
     goal: "Analog signal path with STM32-based digital control",
     stack: ['STM32F446RE', 'TL082 Op-Amp', 'Relay Switching', 'Analog Circuits', 'C'],
-    images: ['/images/guitar_pedal_setup.jpg'],
+    images: ['images/guitar_pedal_setup.jpg'],
     modalImages: [
-      '/images/guitar_pedal_detail_1.jpg',
-      '/images/guitar_pedal_detail_2.jpg',
-      '/images/guitar_pedal_detail_3.jpg'
+      'images/guitar_pedal_detail_1.jpg',
+      'images/guitar_pedal_detail_2.jpg',
+      'images/guitar_pedal_detail_3.jpg'
     ],
     description: (
       <>
@@ -165,7 +165,7 @@ const PROJECTS_DATA = [
     goal: "Measure R, L, & C via comparator interrupts & precise timing",
     stack: ['C', 'TM4C123', 'Hardware Timers', 'Analog Comparators'],
     repoLink: "https://github.com/Galib2003/Inductance-Capacitance-Resistance-LCR-Meter.git",
-    images: ['/images/lcr_meter_circuit.jpg'],
+    images: ['images/lcr_meter_circuit.jpg'],
     description: (
       <>
         <p style={{ marginBottom: '1rem' }}>
@@ -225,7 +225,7 @@ const SystemOverview = () => (
       </div>
       <div style={{ flexShrink: 0 }}>
         <img
-          src="/images/profile_photo.jpg"
+          src="images/profile_photo.jpg"
           alt="Profile"
           style={{
             width: '360px',
@@ -462,28 +462,28 @@ const HardwareInterfaces = () => {
       subtitle: "The Workhorse",
       specs: ["ARM Cortex-M4 @ 180MHz", "FPU & DSP Instructions", "16-bit ADCs"],
       useCase: "Primary choice for audio processing and complex control loops requiring deterministic timing.",
-      image: "/images/guitar_pedal_setup.jpg" // Using Guitar Pedal setup as it features STM32
+      image: "images/guitar_pedal_setup.jpg" // Using Guitar Pedal setup as it features STM32
     },
     {
       title: "Tiva C Series (TM4C123)",
       subtitle: "Real-Time Control",
       specs: ["ARM Cortex-M4F @ 80MHz", "Double Precision FPU", "High-Drive GPIOs"],
       useCase: "Go-to platform for RTOS development and educational embedded systems projects.",
-      image: "/images/rtos_board.jpg"
+      image: "images/rtos_board.jpg"
     },
     {
       title: "NVIDIA Jetson Orin NX",
       subtitle: "AI at the Edge",
       specs: ["100 TOPS AI Performance", "Ampere GPU Architecture", "ROS 2 Support"],
       useCase: "Sensor fusion and path planning for autonomous robotics (IGVC).",
-      image: "/images/igvc_robot.jpg"
+      image: "images/igvc_robot.jpg"
     },
     {
       title: "Cyclone IV FPGA",
       subtitle: "Digital Logic Fabric",
       specs: ["6K Logic Elements", "Embedded Multipliers", "PLLs for Clock Gen"],
       useCase: "Custom digital peripherals and high-speed parallel I/O interfaces.",
-      image: "/images/lcr_meter_circuit.jpg" // Visual placeholder for complex circuit
+      image: "images/lcr_meter_circuit.jpg" // Visual placeholder for complex circuit
     }
   ];
 
