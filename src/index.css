@@ -103,7 +103,152 @@ a {
   max-width: none;
 }
 
-@media (max-width: 768px) {
+/* Responsive Animations */
+.fade-in {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .fade-in,
+  .animate-flow,
+  .modal-content,
+  .modal-overlay {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* Layout Utilities */
+.profile-section {
+  display: flex;
+  gap: 3rem;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.profile-text {
+  flex: 1;
+  min-width: 300px;
+  font-size: 1rem;
+  color: var(--text-secondary);
+}
+
+.profile-image-container {
+  flex-shrink: 0;
+}
+
+.profile-image {
+  width: 360px;
+  height: auto;
+  border-radius: 8px;
+  border: 1px solid var(--border-lines);
+  filter: grayscale(20%) contrast(1.1);
+}
+
+.technical-skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  font-family: var(--font-mono);
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+}
+
+/* Resume Button */
+.resume-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1.5rem;
+  background-color: var(--bg-surface);
+  color: var(--text-primary);
+  border: 1px solid var(--border-lines);
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  margin-top: 2rem;
+}
+
+.resume-button:hover {
+  background-color: var(--code-block);
+  border-color: var(--accent-main);
+  color: var(--accent-main);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Project Build Log */
+.project-article {
+  margin-bottom: 4rem;
+  padding-bottom: 3rem;
+  border-bottom: 1px solid var(--border-lines);
+}
+
+.project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.project-meta {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.project-content {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.project-content-inner {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.project-image {
+  width: 340px;
+  height: auto;
+  border-radius: 4px;
+  border: 1px solid var(--border-lines);
+  flex-shrink: 0;
+}
+
+/* Hardware Grid */
+.hardware-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 1024px) {
   .layout-container {
     flex-direction: column;
   }
@@ -111,14 +256,136 @@ a {
   .sidebar {
     width: 100%;
     height: auto;
-    position: relative;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    /* Ensure it stays on top */
     border-right: none;
     border-bottom: 1px solid var(--border-lines);
+    padding: 1rem 1.5rem;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--bg-surface);
+    /* Ensure background is opaque */
+  }
+
+  /* Adjust sidebar internal layout for horizontal bar */
+  .sidebar .sidebar-header {
+    margin-bottom: 0;
+  }
+
+  .sidebar .sidebar-header h1 {
+    font-size: 1.1rem;
+    margin-bottom: 0;
+  }
+
+  .sidebar .sidebar-header div {
+    display: none;
+    /* Hide subtitle on mobile header to save space */
+  }
+
+  .sidebar nav {
+    margin-top: 0 !important;
+    flex: 0 !important;
+  }
+
+  .sidebar nav ul {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 0;
+  }
+
+  .sidebar nav li {
+    margin-bottom: 0 !important;
+  }
+
+  .sidebar nav button span {
+    display: none;
+    /* Hide text label on small mobile, show only icon? Or keep simplified */
+  }
+
+  .sidebar-footer {
+    display: none;
   }
 
   .main-content {
     margin-left: 0;
-    padding: 2rem;
+    padding: 1.5rem;
+    /* Reduced padding */
+    padding-top: 2rem;
+  }
+
+  /* Profile Section Mobile */
+  .profile-section {
+    flex-direction: column-reverse;
+    /* Image on top? Or text on top? usually image on top is better, or keep standard flow */
+    gap: 2rem;
+  }
+
+  .profile-image {
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .profile-text {
+    min-width: 0;
+    /* Allow shrinking */
+  }
+
+  /* Project Grid Mobile - FORCE STACKING */
+  .project-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .project-meta {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+
+  .project-content-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+  }
+
+  .project-image {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto;
+  }
+
+  /* Hardware Grid Mobile */
+  .hardware-grid {
+    grid-template-columns: 1fr;
+    /* Full width cards */
+  }
+
+  .technical-skills-grid {
+    grid-template-columns: 1fr;
+  }
+
+  h2 {
+    font-size: 1.75rem !important;
+  }
+
+  h3 {
+    font-size: 1.3rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+
+  /* Even smaller screens */
+  .sidebar {
+    padding: 0.75rem 1rem;
+  }
+
+  .main-content {
+    padding: 1rem;
   }
 }
 
@@ -210,5 +477,33 @@ a {
   to {
     transform: scale(1) translateY(0);
     opacity: 1;
+  }
+}
+
+/* Modal Responsive Styles */
+@media (max-width: 1024px) {
+  .modal-content {
+    padding: 1.5rem;
+    width: 95vw;
+    margin: 1rem;
+    max-height: 85vh;
+  }
+}
+
+.modal-header-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+@media (max-width: 480px) {
+  .modal-header-meta {
+    flex-direction: column;
+    gap: 0.25rem;
+    align-items: flex-start;
   }
 }

@@ -18,7 +18,7 @@ const Sidebar = ({ currentSection, onNavigate }) => {
                 </div>
             </div>
 
-            <nav style={{ marginTop: '3rem', flex: 1 }}>
+            <nav>
                 <ul style={{ listStyle: 'none' }}>
                     {navItems.map((item) => (
                         <li key={item.id} style={{ marginBottom: '1rem' }}>
@@ -42,14 +42,14 @@ const Sidebar = ({ currentSection, onNavigate }) => {
                                 }}
                             >
                                 <item.icon size={18} strokeWidth={currentSection === item.id ? 2.5 : 2} />
-                                {item.label}
+                                <span className="nav-label">{item.label}</span>
                             </button>
                         </li>
                     ))}
                 </ul>
             </nav>
 
-            <div className="sidebar-footer" style={{ borderTop: '1px solid var(--border-lines)', paddingTop: '1.5rem' }}>
+            <div className="sidebar-footer">
                 <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'var(--text-secondary)', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                     <a href="https://github.com/Galib2003" target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', textDecoration: 'none', color: 'inherit', transition: 'color 0.2s' }}>
                         <Github size={16} /> github.com/Galib2003

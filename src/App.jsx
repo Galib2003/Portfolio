@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import Sidebar from './components/Sidebar';
 import WaveformDivider from './components/WaveformDivider';
 import ProjectModal from './components/ProjectModal';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, FileText, Download } from 'lucide-react';
+
+const SHOW_RESUME = true; // Set to false to hide the resume section
 
 const PROJECTS_DATA = [
   {
@@ -11,7 +13,8 @@ const PROJECTS_DATA = [
     status: "IN_PROGRESS",
     goal: "Model optimization, safety integration, & autonomy",
     stack: ['Jetson Orin NX', 'TM4C123', 'LiDAR', 'Computer Vision', 'C++/Python'],
-    images: ['images/igvc_robot.jpg', 'images/igvc_cover_design.png'],
+    repoLink: "https://github.com/Galib2003/IGVC.git",
+    images: ['images/igvc_robot.jpg', 'images/igvc_cover_design.png', 'images/igvc_wiring_diagram.png'],
     description: (
       <>
         <p style={{ marginBottom: '1rem' }}>
@@ -186,10 +189,10 @@ const PROJECTS_DATA = [
 
         <h4 style={{ fontSize: '1.1rem', color: 'var(--text-primary)', marginTop: '1.5rem', marginBottom: '0.5rem' }}>Measurement Modes</h4>
         <ul style={{ listStyle: 'disc', listStylePosition: 'inside', color: 'var(--text-secondary)', marginBottom: '1rem' }}>
-          <li><strong>Resistance ('r'):</strong> Measures the de-integration time of an internal capacitor through the unknown resistor.</li>
-          <li><strong>Capacitance ('c'):</strong> Measures the charge time required to trip the comparator reference voltage.</li>
-          <li><strong>Inductance ('l'):</strong> Measures the "flyback" time (flux collapse) when current is removed from the inductor.</li>
-          <li><strong>Auto-Range ('auto'):</strong> Heuristically detects the component type and selects the appropriate measurement algorithm.</li>
+          <li><strong>Resistance (r):</strong> Measures the de-integration time of an internal capacitor through the unknown resistor.</li>
+          <li><strong>Capacitance (c):</strong> Measures the charge time required to trip the comparator reference voltage.</li>
+          <li><strong>Inductance (l):</strong> Measures the "flyback" time (flux collapse) when current is removed from the inductor.</li>
+          <li><strong>Auto-Range (auto):</strong> Heuristically detects the component type and selects the appropriate measurement algorithm.</li>
         </ul>
 
         <h4 style={{ fontSize: '1.1rem', color: 'var(--text-primary)', marginTop: '1.5rem', marginBottom: '0.5rem' }}>System Architecture</h4>
@@ -211,8 +214,8 @@ const SystemOverview = () => (
       <WaveformDivider type="noise" />
     </header>
 
-    <div style={{ display: 'flex', gap: '3rem', alignItems: 'flex-start', flexWrap: 'wrap' }}>
-      <div style={{ flex: 1, minWidth: '300px', fontSize: '1rem', color: 'var(--text-secondary)' }}>
+    <div className="profile-section">
+      <div className="profile-text">
         <p style={{ marginBottom: '1.5rem' }}>
           I design and implement real-time systems where software interfaces directly with physical signals.
         </p>
@@ -223,17 +226,11 @@ const SystemOverview = () => (
           I’m particularly interested in systems where timing, noise, and resource constraints actively shape design decisions — and where correctness is measured using oscilloscopes, logic analyzers, and controlled test signals.
         </p>
       </div>
-      <div style={{ flexShrink: 0 }}>
+      <div className="profile-image-container">
         <img
           src="images/profile_photo.jpg"
           alt="Profile"
-          style={{
-            width: '360px',
-            height: 'auto',
-            borderRadius: '8px',
-            border: '1px solid var(--border-lines)',
-            filter: 'grayscale(20%) contrast(1.1)'
-          }}
+          className="profile-image"
         />
       </div>
     </div>
@@ -256,7 +253,7 @@ const SystemOverview = () => (
 
     <section style={{ marginTop: '4rem' }}>
       <h3 style={{ fontSize: '1.25rem', marginBottom: '2rem', borderBottom: '1px solid var(--border-lines)', paddingBottom: '0.5rem' }}>Technical Skills</h3>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
+      <div className="technical-skills-grid">
         {[
           {
             title: "Circuit & PCB",
@@ -319,7 +316,7 @@ const SystemOverview = () => (
 
     <section style={{ marginTop: '4rem' }}>
       <h3 style={{ fontSize: '1.25rem', marginBottom: '1.5rem', borderBottom: '1px solid var(--border-lines)', paddingBottom: '0.5rem' }}>Quick Stats</h3>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem', fontFamily: 'var(--font-mono)', fontSize: '0.9rem' }}>
+      <div className="stats-grid">
         {[
           { label: "Core Focus", value: "Embedded & Mixed-Signal" },
           { label: "Hardware", value: "STM32, Tiva C, FPGA" },
@@ -348,13 +345,27 @@ const SystemOverview = () => (
       <p style={{ maxWidth: '65ch', fontSize: '1.125rem', color: 'var(--text-secondary)' }}>
         I enjoy turning low-level understanding into physical systems you can interact with — whether that’s an embedded controller or a real-time processing pipeline.
       </p>
+
+      {SHOW_RESUME && (
+        <div style={{ marginTop: '3rem', borderTop: '1px solid var(--border-lines)', paddingTop: '2rem' }}>
+          <h4 style={{ fontSize: '1.1rem', color: 'var(--text-primary)', marginBottom: '1rem' }}>Resume / CV</h4>
+          <a href="resume.pdf" target="_blank" rel="noopener noreferrer" className="resume-button">
+            <FileText size={20} />
+            <span>Download Resume</span>
+            <Download size={16} style={{ marginLeft: 'auto', opacity: 0.6 }} />
+          </a>
+          <p style={{ marginTop: '1rem', fontSize: '0.875rem', color: 'var(--text-secondary)', fontFamily: 'var(--font-mono)' }}>
+            [ PDF Format ]
+          </p>
+        </div>
+      )}
     </section>
   </div>
 );
 
 const BuildLog = ({ title, goal, stack, date, status, images, repoLink, onSeeMore, children }) => (
-  <article style={{ marginBottom: '4rem', paddingBottom: '3rem', borderBottom: '1px solid var(--border-lines)' }}>
-    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '0.5rem', fontFamily: 'var(--font-mono)', fontSize: '0.875rem', color: 'var(--text-secondary)' }}>
+  <article className="project-article">
+    <div className="project-header">
       <span>{date}</span>
       <span>
         Status: <span style={{ color: status === 'COMPLETED' ? 'var(--accent-main)' : '#fbbf24' }}>{status}</span>
@@ -362,8 +373,8 @@ const BuildLog = ({ title, goal, stack, date, status, images, repoLink, onSeeMor
     </div>
     <h3 style={{ fontSize: '1.5rem', marginBottom: '1.5rem' }}>{title}</h3>
 
-    <div style={{ display: 'grid', gridTemplateColumns: '150px 1fr', gap: '2rem', marginBottom: '2rem' }}>
-      <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.9rem', color: 'var(--text-secondary)' }}>
+    <div className="project-grid">
+      <div className="project-meta">
         <div style={{ marginBottom: '1rem' }}>
           <strong style={{ display: 'block', color: 'var(--text-primary)', marginBottom: '0.25rem' }}>Goal</strong>
           {goal}
@@ -392,19 +403,13 @@ const BuildLog = ({ title, goal, stack, date, status, images, repoLink, onSeeMor
           </div>
         )}
       </div>
-      <div style={{ fontSize: '1rem', lineHeight: '1.6', color: 'var(--text-secondary)' }}>
-        <div style={{ display: 'flex', gap: '2rem', alignItems: 'flex-start', flexWrap: 'wrap' }}>
+      <div className="project-content">
+        <div className="project-content-inner">
           {images && images.length > 0 && (
             <img
               src={images[0]}
               alt={title}
-              style={{
-                width: '340px',
-                height: 'auto',
-                borderRadius: '4px',
-                border: '1px solid var(--border-lines)',
-                flexShrink: 0
-              }}
+              className="project-image"
             />
           )}
           <div style={{ flex: 1, minWidth: '300px' }}>
@@ -497,7 +502,7 @@ const HardwareInterfaces = () => {
         </p>
       </header>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem', marginBottom: '4rem' }}>
+      <div className="hardware-grid">
         {hardwareItems.map((item, index) => (
           <div key={index} style={{
             background: 'var(--bg-surface)',

@@ -23,7 +23,7 @@ const ProjectModal = ({ isOpen, onClose, project }) => {
                 </button>
 
                 <header style={{ marginBottom: '2rem', borderBottom: '1px solid var(--border-lines)', paddingBottom: '1rem' }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '0.5rem', fontFamily: 'var(--font-mono)', fontSize: '0.875rem', color: 'var(--text-secondary)' }}>
+                    <div className="modal-header-meta">
                         <span>{project.date}</span>
                         <span>Status: {project.status}</span>
                     </div>
