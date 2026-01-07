@@ -217,13 +217,13 @@ const SystemOverview = () => (
     <div className="profile-section">
       <div className="profile-text">
         <p style={{ marginBottom: '1.5rem' }}>
-          I design and implement real-time systems where software interfaces directly with physical signals.
+          Hey! I'm a Computer Engineering student at the University of Texas at Arlington, graduating May 2026. I love building things that bridge the gap between code and the physical world.
         </p>
         <p style={{ marginBottom: '1.5rem' }}>
-          My work sits at the intersection of <strong style={{ color: 'var(--text-primary)' }}>embedded firmware</strong> and <strong style={{ color: 'var(--text-primary)' }}>hardware design</strong>, with an emphasis on deterministic behavior, signal integrity, and validation on real hardware rather than simulation alone.
+          Whether it's programming microcontrollers, working on autonomous robots, or diving into machine learning research, I'm happiest when I'm solving problems that actually <strong style={{ color: 'var(--text-primary)' }}>do something</strong> in the real world.
         </p>
         <p>
-          I’m particularly interested in systems where timing, noise, and resource constraints actively shape design decisions — and where correctness is measured using oscilloscopes, logic analyzers, and controlled test signals.
+          Right now, I'm working on an autonomous ground robot for the IGVC competition and exploring AI/IoT security through research. When I'm not debugging firmware or tuning navigation algorithms, you'll find me competing in hackathons, building quirky apps and websites that solve my own problems (or are just plain fun), or practicing guitar — slowly learning to speak the language that comes straight from the heart.
         </p>
       </div>
       <div className="profile-image-container">
@@ -239,10 +239,10 @@ const SystemOverview = () => (
       <h3 style={{ fontSize: '1.25rem', marginBottom: '1.5rem', borderBottom: '1px solid var(--border-lines)', paddingBottom: '0.5rem' }}>What I Do</h3>
       <ul style={{ listStyle: 'none', marginLeft: '0' }}>
         {[
-          "Analog front-end design for sensor signals",
-          "Bare-metal and RTOS-based firmware on ARM Cortex-M microcontrollers",
-          "Digital hardware design using FPGA and RTL methodologies",
-          "Hardware-in-the-loop validation using lab instrumentation"
+          "Real-time embedded systems on ARM Cortex-M",
+          "Autonomous robotics with ROS2 and sensor fusion",
+          "Machine learning & neural network development",
+          "Research in AI-enabled IoT and optimization systems"
         ].map((item, i) => (
           <li key={i} style={{ marginBottom: '0.75rem', display: 'flex', gap: '0.75rem', color: 'var(--text-secondary)' }}>
             <span style={{ color: 'var(--accent-main)' }}>//</span> {item}
@@ -256,47 +256,57 @@ const SystemOverview = () => (
       <div className="technical-skills-grid">
         {[
           {
-            title: "Circuit & PCB",
+            title: "Machine Learning",
             items: [
-              "Schematic design and PCB layout",
-              "Tools: KiCad, Altium, LTSpice",
-              "Soldering and circuit bring-up",
-              "Validation using Multimeter/Scope"
+              "Python, PyTorch",
+              "Neural networks & model evaluation",
+              "Multi-fidelity surrogate models",
+              "Data analysis & visualization"
             ]
           },
           {
-            title: "Embedded Systems",
+            title: "Embedded & Firmware",
             items: [
-              "ARM Cortex-M (STM32, Tiva C)",
-              "Arduino Uno, Raspberry Pi",
-              "Protocols: UART, SPI, I2C, GPIO, PWM, MQTT",
-              "Real-time constraints & Interrupts"
+              "Bare-metal ARM (STM32, TM4C)",
+              "FreeRTOS, interrupts, memory",
+              "DSP & real-time audio processing",
+              "Sensor integration & motor control"
             ]
           },
           {
-            title: "FPGA & HDL",
+            title: "Languages",
             items: [
-              "Verilog, SystemVerilog, VHDL",
-              "RTL design and simulation",
-              "Tools: Quartus Prime, ModelSim",
-              "Cyclone IV Hardware"
-            ]
-          },
-          {
-            title: "Programming",
-            items: [
-              "C, C++ (Embedded focus)",
-              "Python (Scripting/Test)",
-              "Assembly (8086, ARMv7)",
+              "C, C++",
+              "Python, Bash",
+              "ARM Assembly",
               "Version Control: Git/GitHub"
             ]
           },
           {
-            title: "Lab & Tools",
+            title: "Interfaces & Peripherals",
             items: [
-              "Oscilloscope, Logic Analyzer, Function Generator",
-              "GCC/GDB Debugging Toolchain",
-              "Code Composer Studio, Linux Environment"
+              "SPI, I2C, UART",
+              "PWM, ADC/DAC, GPIO",
+              "I2S audio streaming",
+              "Sensor protocols (GPS, IMU, LiDAR)"
+            ]
+          },
+          {
+            title: "Debugging & Tools",
+            items: [
+              "Oscilloscope, Logic Analyzer",
+              "GDB, CMake, Linux CLI",
+              "Code Composer Studio",
+              "Custom PCB bring-up & validation"
+            ]
+          },
+          {
+            title: "Robotics & Systems",
+            items: [
+              "ROS2, computer vision",
+              "GPS/IMU/LiDAR fusion",
+              "Navigation algorithms",
+              "Real-time perception pipelines"
             ]
           }
         ].map((area, i) => (
@@ -318,11 +328,11 @@ const SystemOverview = () => (
       <h3 style={{ fontSize: '1.25rem', marginBottom: '1.5rem', borderBottom: '1px solid var(--border-lines)', paddingBottom: '0.5rem' }}>Quick Stats</h3>
       <div className="stats-grid">
         {[
-          { label: "Core Focus", value: "Embedded & Mixed-Signal" },
-          { label: "Hardware", value: "STM32, Tiva C, FPGA" },
-          { label: "Languages", value: "C/C++, Verilog, Python" },
-          { label: "Design Tools", value: "KiCad, Altium, Quartus" },
-          { label: "Lab Equipment", value: "Scope, Logic Analyzer" }
+          { label: "Graduating", value: "May 2026" },
+          { label: "Focus", value: "Embedded & Robotics" },
+          { label: "Languages", value: "C/C++, Python" },
+          { label: "Hardware", value: "STM32, TM4C, Jetson" },
+          { label: "Research", value: "AI/IoT Security" }
         ].map((param, i) => (
           <div key={i} style={{ background: 'var(--code-block)', padding: '0.75rem' }}>
             <span style={{ display: 'block', color: 'var(--text-secondary)', fontSize: '0.75rem', marginBottom: '0.25rem' }}>{param.label.toUpperCase()}</span>
@@ -335,7 +345,7 @@ const SystemOverview = () => (
     <section style={{ marginTop: '4rem', marginBottom: '4rem' }}>
       <h3 style={{ fontSize: '1.25rem', marginBottom: '1.5rem', borderBottom: '1px solid var(--border-lines)', paddingBottom: '0.5rem' }}>My Philosophy</h3>
       <div style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap', marginBottom: '1.5rem' }}>
-        {["Clear signal paths", "Predictable timing", "Explicit tradeoffs", "Systems that can be measured, heard, and debugged"].map((item, i) => (
+        {["Build to learn", "Debug with data", "Ship things that work", "Stay curious"].map((item, i) => (
           <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--text-secondary)' }}>
             <div style={{ width: '6px', height: '6px', background: 'var(--accent-main)' }}></div>
             {item}
@@ -343,7 +353,7 @@ const SystemOverview = () => (
         ))}
       </div>
       <p style={{ maxWidth: '65ch', fontSize: '1.125rem', color: 'var(--text-secondary)' }}>
-        I enjoy turning low-level understanding into physical systems you can interact with — whether that’s an embedded controller or a real-time processing pipeline.
+        I believe the best way to understand something is to build it. Whether it's a custom RTOS kernel or an autonomous robot, I'm driven by the challenge of making complex systems actually work.
       </p>
 
       {SHOW_RESUME && (
@@ -359,6 +369,151 @@ const SystemOverview = () => (
           </p>
         </div>
       )}
+    </section>
+  </div>
+);
+
+// Research Section
+const Research = () => (
+  <div className="section-content fade-in">
+    <header style={{ marginBottom: '3rem' }}>
+      <h2 style={{ fontSize: '2rem', marginBottom: '1rem' }}>Research & Publications</h2>
+      <WaveformDivider type="noise" />
+    </header>
+
+    <section style={{ marginBottom: '3rem' }}>
+      <h3 style={{ fontSize: '1.25rem', marginBottom: '2rem', borderBottom: '1px solid var(--border-lines)', paddingBottom: '0.5rem' }}>Publications & Manuscripts</h3>
+
+      {[
+        {
+          title: "The Secure AI-Enabled IoT Edge: Attacks, Lightweight Defenses, and Privacy Challenges",
+          subtitle: "A Systematic Review",
+          status: "Under Review",
+          date: "Dec 2025",
+          description: "Co-authored a systematic review on AI-enabled IoT edge security and privacy. Synthesized threats, lightweight defenses, and evaluation practices across peer-reviewed literature. Supported taxonomy development and comparative analysis of edge-feasible defenses."
+        },
+        {
+          title: "Green Energy Management Software (GEMS)",
+          subtitle: "AI-Driven Optimization of Hybrid Renewable Powerplants",
+          status: "Manuscript",
+          date: "Dec 2025",
+          description: "Co-developed a nature-inspired metaheuristic optimization engine for Green Energy Management Software to optimize hybrid renewable energy systems. Designed multi-criteria decision-making (MCDM) algorithms integrating AHP, TOPSIS, and fuzzy logic."
+        },
+        {
+          title: "Improving Memorability of System-Assigned Random Passwords",
+          subtitle: "Using Graphical and Textual Cues",
+          status: "Manuscript",
+          date: "Jan 2026",
+          description: "Co-developed a cue-based framework for learning system-assigned high-entropy passwords using graphical cues, chunking, and keystroke reinforcement. Contributed to methodology and experimental evaluation with high recall accuracy over time."
+        }
+      ].map((paper, index) => (
+        <article key={index} style={{
+          background: 'var(--bg-surface)',
+          border: '1px solid var(--border-lines)',
+          padding: '1.5rem',
+          marginBottom: '1.5rem'
+        }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.5rem', flexWrap: 'wrap', gap: '0.5rem' }}>
+            <span style={{
+              background: paper.status === 'Under Review' ? 'rgba(251, 191, 36, 0.2)' : 'rgba(34, 197, 94, 0.2)',
+              color: paper.status === 'Under Review' ? '#fbbf24' : '#22c55e',
+              padding: '0.25rem 0.75rem',
+              fontSize: '0.75rem',
+              fontFamily: 'var(--font-mono)'
+            }}>
+              {paper.status}
+            </span>
+            <span style={{ color: 'var(--text-secondary)', fontSize: '0.875rem', fontFamily: 'var(--font-mono)' }}>
+              {paper.date}
+            </span>
+          </div>
+          <h4 style={{ fontSize: '1.1rem', color: 'var(--text-primary)', marginBottom: '0.25rem' }}>
+            {paper.title}
+          </h4>
+          <p style={{ fontSize: '0.9rem', color: 'var(--accent-main)', fontFamily: 'var(--font-mono)', marginBottom: '1rem' }}>
+            // {paper.subtitle}
+          </p>
+          <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', lineHeight: '1.6' }}>
+            {paper.description}
+          </p>
+        </article>
+      ))}
+    </section>
+
+    <section>
+      <h3 style={{ fontSize: '1.25rem', marginBottom: '2rem', borderBottom: '1px solid var(--border-lines)', paddingBottom: '0.5rem' }}>Research Experience</h3>
+
+      <article style={{
+        background: 'var(--bg-surface)',
+        border: '1px solid var(--border-lines)',
+        padding: '1.5rem',
+        marginBottom: '1.5rem'
+      }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.75rem', flexWrap: 'wrap', gap: '0.5rem' }}>
+          <div>
+            <h4 style={{ fontSize: '1.1rem', color: 'var(--text-primary)', marginBottom: '0.25rem' }}>Research Assistant</h4>
+            <p style={{ color: 'var(--accent-main)', fontFamily: 'var(--font-mono)', fontSize: '0.9rem' }}>University of Texas at Arlington Research Institute (UTARI)</p>
+          </div>
+          <span style={{ color: 'var(--text-secondary)', fontSize: '0.875rem', fontFamily: 'var(--font-mono)' }}>
+            Jan 2023 – Mar 2023
+          </span>
+        </div>
+        <ul style={{ listStyle: 'none', color: 'var(--text-secondary)', fontSize: '0.95rem' }}>
+          <li style={{ marginBottom: '0.5rem', display: 'flex', gap: '0.75rem' }}>
+            <span style={{ color: 'var(--accent-main)' }}>•</span>
+            Developed multi-fidelity neural networks achieving &gt;92% predictive accuracy
+          </li>
+          <li style={{ marginBottom: '0.5rem', display: 'flex', gap: '0.75rem' }}>
+            <span style={{ color: 'var(--accent-main)' }}>•</span>
+            Reduced reliance on high-cost simulations by 60% through model-driven surrogate predictions
+          </li>
+          <li style={{ display: 'flex', gap: '0.75rem' }}>
+            <span style={{ color: 'var(--accent-main)' }}>•</span>
+            Collaborated in R&D workflow with iterative experimentation and reporting
+          </li>
+        </ul>
+      </article>
+
+      <article style={{
+        background: 'var(--bg-surface)',
+        border: '1px solid var(--border-lines)',
+        padding: '1.5rem'
+      }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.75rem', flexWrap: 'wrap', gap: '0.5rem' }}>
+          <div>
+            <h4 style={{ fontSize: '1.1rem', color: 'var(--text-primary)', marginBottom: '0.25rem' }}>UR2PhD Research Training</h4>
+            <p style={{ color: 'var(--accent-main)', fontFamily: 'var(--font-mono)', fontSize: '0.9rem' }}>Computing Research Association (CRA)</p>
+          </div>
+          <span style={{ color: 'var(--text-secondary)', fontSize: '0.875rem', fontFamily: 'var(--font-mono)' }}>
+            Sep 2025
+          </span>
+        </div>
+        <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', lineHeight: '1.6' }}>
+          Completed UR2PhD Undergraduate Pre-Research Experience program focused on reading technical papers, conducting literature searches, and analyzing/visualizing experimental data.
+        </p>
+      </article>
+    </section>
+
+    <section style={{ marginTop: '3rem', padding: '2rem', background: 'var(--code-block)', border: '1px dashed var(--border-lines)' }}>
+      <h4 style={{ fontSize: '1rem', color: 'var(--text-primary)', marginBottom: '1rem' }}>Education & Recognition</h4>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
+        <div>
+          <span style={{ display: 'block', color: 'var(--text-secondary)', fontSize: '0.75rem', marginBottom: '0.25rem', fontFamily: 'var(--font-mono)' }}>UNIVERSITY</span>
+          <span style={{ color: 'var(--text-primary)' }}>UT Arlington</span>
+        </div>
+        <div>
+          <span style={{ display: 'block', color: 'var(--text-secondary)', fontSize: '0.75rem', marginBottom: '0.25rem', fontFamily: 'var(--font-mono)' }}>DEGREE</span>
+          <span style={{ color: 'var(--text-primary)' }}>B.S. Computer Engineering</span>
+        </div>
+        <div>
+          <span style={{ display: 'block', color: 'var(--text-secondary)', fontSize: '0.75rem', marginBottom: '0.25rem', fontFamily: 'var(--font-mono)' }}>GRADUATION</span>
+          <span style={{ color: 'var(--text-primary)' }}>May 2026</span>
+        </div>
+        <div>
+          <span style={{ display: 'block', color: 'var(--text-secondary)', fontSize: '0.75rem', marginBottom: '0.25rem', fontFamily: 'var(--font-mono)' }}>HONORS</span>
+          <span style={{ color: 'var(--text-primary)' }}>Honor's College, Maverick Scholarship</span>
+        </div>
+      </div>
     </section>
   </div>
 );
@@ -572,6 +727,7 @@ function App() {
   const renderSection = () => {
     switch (currentSection) {
       case 'overview': return <SystemOverview />;
+      case 'research': return <Research />;
       case 'projects': return <Projects onProjectSelect={setSelectedProject} />;
       case 'hardware': return <HardwareInterfaces />;
       default: return <SystemOverview />;

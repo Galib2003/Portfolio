@@ -1,9 +1,10 @@
 import React from 'react';
-import { Activity, Cpu, Radio, Terminal, Github } from 'lucide-react';
+import { Activity, Cpu, Radio, Terminal, Github, BookOpen } from 'lucide-react';
 
 const Sidebar = ({ currentSection, onNavigate }) => {
     const navItems = [
         { id: 'overview', label: 'About', icon: Activity },
+        { id: 'research', label: 'Research', icon: BookOpen },
         { id: 'projects', label: 'Projects', icon: Cpu },
         { id: 'hardware', label: 'Hardware', icon: Terminal },
     ];
