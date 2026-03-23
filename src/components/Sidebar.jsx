@@ -1,62 +1,74 @@
 import React from 'react';
-import { Activity, Cpu, Radio, Terminal, Github, BookOpen } from 'lucide-react';
 
 const Sidebar = ({ currentSection, onNavigate }) => {
     const navItems = [
-        { id: 'overview', label: 'About', icon: Activity },
-        { id: 'research', label: 'Research', icon: BookOpen },
-        { id: 'projects', label: 'Projects', icon: Cpu },
-        { id: 'hardware', label: 'Hardware', icon: Terminal },
+        { id: 'overview', label: 'Overview', number: '01' },
+        { id: 'research', label: 'Research', number: '02' },
+        { id: 'projects', label: 'Projects', number: '03' },
+        { id: 'hardware', label: 'Hardware', number: '04' },
+        { id: 'playground', label: 'Playground', number: '05' },
+        { id: 'art_design', label: 'Art & Design', number: '06' },
+        { id: 'studio', label: 'Gallery', number: '07' },
+        { id: 'contact', label: 'Contact', number: '08' },
     ];
 
     return (
         <aside className="sidebar">
-            <div className="sidebar-header">
-                <h1 style={{ fontSize: '1.25rem', marginBottom: '0.5rem', fontWeight: 700 }}>GALIB RAID</h1>
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.875rem', color: 'var(--text-secondary)' }}>
-          // System Engineer<br />
-          // Embedded
-                </div>
+            <div style={{ marginBottom: '4rem' }}>
+                <h1 style={{
+                    fontSize: '3rem',
+                    lineHeight: '1',
+                    marginBottom: '0.5rem',
+                    letterSpacing: '-0.02em'
+                }}>
+                    GALIB<br />RAID
+                </h1>
+
             </div>
 
-            <nav>
-                <ul style={{ listStyle: 'none' }}>
-                    {navItems.map((item) => (
-                        <li key={item.id} style={{ marginBottom: '1rem' }}>
-                            <button
-                                onClick={() => onNavigate(item.id)}
-                                style={{
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    gap: '0.75rem',
-                                    fontFamily: 'var(--font-mono)',
-                                    fontSize: '0.9rem',
-                                    color: currentSection === item.id ? 'var(--text-primary)' : 'var(--text-secondary)',
-                                    background: 'none',
-                                    border: 'none',
-                                    cursor: 'pointer',
-                                    width: '100%',
-                                    textAlign: 'left',
-                                    padding: '0.5rem 0',
-                                    borderBottom: currentSection === item.id ? '2px solid var(--accent-main)' : '2px solid transparent',
-                                    transition: 'all 0.2s'
-                                }}
-                            >
-                                <item.icon size={18} strokeWidth={currentSection === item.id ? 2.5 : 2} />
-                                <span className="nav-label">{item.label}</span>
-                            </button>
-                        </li>
-                    ))}
-                </ul>
+            <nav style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                {navItems.map((item) => (
+                    <button
+                        key={item.id}
+                        onClick={() => onNavigate(item.id)}
+                        style={{
+                            background: 'transparent',
+                            border: 'none',
+                            color: 'var(--bg-main)',
+                            textAlign: 'left',
+                            fontSize: '1.25rem',
+                            padding: '0.5rem 0',
+                            cursor: 'pointer',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '1.5rem',
+                            opacity: currentSection === item.id ? 1 : 0.6,
+                            transition: 'opacity 0.2s'
+                        }}
+                    >
+                        <span style={{
+                            fontFamily: 'var(--font-mono)',
+                            fontSize: '0.9rem',
+                            fontWeight: 700
+                        }}>
+                            {item.number}
+                        </span>
+                        <span style={{ fontWeight: 700 }}>
+                            {item.label}
+                        </span>
+                    </button>
+                ))}
             </nav>
 
-            <div className="sidebar-footer">
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'var(--text-secondary)', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                    <a href="https://github.com/Galib2003" target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', textDecoration: 'none', color: 'inherit', transition: 'color 0.2s' }}>
-                        <Github size={16} /> github.com/Galib2003
-                    </a>
-                    <div>© 2025</div>
-                </div>
+            <div style={{ marginTop: 'auto' }}>
+                <p style={{
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: '0.8rem',
+                    opacity: 0.6
+                }}>
+                    +1 682 376 9169<br />
+                    gar5128@mavs.uta.edu
+                </p>
             </div>
         </aside>
     );

@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Sidebar from './components/Sidebar';
 import WaveformDivider from './components/WaveformDivider';
 import ProjectModal from './components/ProjectModal';
-import { ArrowUpRight, FileText, Download } from 'lucide-react';
+import { ArrowUpRight, FileText, Download, Gamepad2, Mail, Github, Linkedin, Instagram, Youtube, Image as ImageIcon } from 'lucide-react';
+import studioData from './data/studio.json';
+import artDesignData from './data/art_design.json';
 
 const SHOW_RESUME = true; // Set to false to hide the resume section
 
@@ -116,6 +118,7 @@ const PROJECTS_DATA = [
     date: "2025-11",
     status: "COMPLETED",
     goal: "Analog signal path with STM32-based digital control",
+    video: "https://www.youtube.com/embed/-jpOX86UUWA?si=BhXp7STRPKdMwbvW",
     stack: ['STM32F446RE', 'TL082 Op-Amp', 'Relay Switching', 'Analog Circuits', 'C'],
     images: ['images/guitar_pedal_setup.jpg'],
     modalImages: [
@@ -206,388 +209,382 @@ const PROJECTS_DATA = [
   }
 ];
 
+const CREATIVE_PROJECTS_DATA = [
+  {
+    theme: 'retro',
+    title: "PixelStrum",
+    date: "2026-02",
+    status: "CONCEPT",
+    goal: "Gamified social music platform with AI integration",
+    stack: ['React 19', 'Gemini API', 'Web Audio API', 'Tailwind'],
+    images: ['images/projects/pixelstrum/feed.png'],
+    modalImages: [
+      'images/projects/pixelstrum/drummer.png',
+      'images/projects/pixelstrum/amp.png',
+      'images/projects/pixelstrum/card.png'
+    ],
+    description: (
+      <>
+        <p style={{ marginBottom: '1rem' }}>
+          PixelStrum is a concept web application that bridges the gap between social networking, gamification, and serious musical utility for guitarists.
+        </p>
+        <p>
+          <strong>Focus:</strong> A matched "retro-gaming" aesthetic meets advanced AI tools like an Avatar Creator, Session Drummer, and "NeuroShred" Amp Sim.
+        </p>
+      </>
+    ),
+    fullDescription: (
+      <>
+        <p style={{ marginBottom: '1rem' }}>
+          PixelStrum demonstrates the future of "Creative Co-pilot" applications. It moves beyond simple chatbots by integrating AI directly into the creative workflow.
+        </p>
+
+        <h4 style={{ fontSize: '1.1rem', color: 'var(--text-primary)', marginTop: '1.5rem', marginBottom: '0.5rem' }}>Feature Deep Dive</h4>
+        <ul style={{ listStyle: 'disc', listStylePosition: 'inside', color: 'var(--text-secondary)', marginBottom: '1rem' }}>
+          <li><strong>AI-Driven Avatar Creator:</strong> Uses Gemini Vision to map user selfies to pixel-art avatars with specific gear.</li>
+          <li><strong>AI Session Drummer:</strong> Conversational interface to generate 16-step sequencer patterns based on natural language or song requests.</li>
+          <li><strong>NeuroShred Amp Sim:</strong> Browser-based DSP engine with Tube Saturation, EQ, and Cabinet Simulation.</li>
+          <li><strong>Intelligent Tone Stickers:</strong> Auto-categorizes uploaded tracks using Gemini to analyze title and visual vibe.</li>
+        </ul>
+      </>
+    )
+  },
+  {
+    theme: 'modern',
+    title: "Bruce",
+    date: "2026-01",
+    status: "BETA",
+    goal: "AI-Powered PhD Application Consultant",
+    stack: ['Gemini 2.0 Flash', 'React (TypeScript)', 'Google Search Grounding', 'Tailwind'],
+    images: ['images/projects/bruce/dashboard.png'],
+    modalImages: [
+      'images/projects/bruce/builder.png',
+      'images/projects/bruce/opportunities.png',
+      'images/projects/bruce/scout.png'
+    ],
+    description: (
+      <>
+        <p style={{ marginBottom: '1rem' }}>
+          An intelligent "PhD Application AI" designed to act as a personal wingman for aspiring doctoral students. Built on the cutting-edge Google Gemini 2.0 Flash API.
+        </p>
+        <p>
+          <strong>Mission:</strong> Streamline the chaotic journey from resume creation to finding the perfect supervisor and crafting the cold email.
+        </p>
+      </>
+    ),
+    fullDescription: (
+      <>
+        <p style={{ marginBottom: '1rem' }}>
+          Applying for a PhD is grueling. Bruce unifies the disparate tasks—writing, searching, tailoring, and emailing—into a single, intelligent dashboard.
+        </p>
+
+        <h4 style={{ fontSize: '1.1rem', color: 'var(--text-primary)', marginTop: '1.5rem', marginBottom: '0.5rem' }}>Core Intelligence</h4>
+        <ul style={{ listStyle: 'disc', listStylePosition: 'inside', color: 'var(--text-secondary)', marginBottom: '1rem' }}>
+          <li><strong>The Resume Architect:</strong> Extracts PDF data into structured JSON and re-renders it into academic LaTeX-style formats.</li>
+          <li><strong>Academic Headhunter:</strong> Uses student profile data to semantic search for professors with active funding and recent relevant papers.</li>
+          <li><strong>Tailoring Engine:</strong> Re-writes resume bullet points to align with specific professor's research interests.</li>
+          <li><strong>Global Scout:</strong> Geospatial map search for funded positions worldwide.</li>
+        </ul>
+      </>
+    )
+  },
+  {
+    theme: 'neumorphic',
+    title: "SyncSpace",
+    date: "2026-03",
+    status: "BETA",
+    goal: "Minimalist Tracker for Asynchronous Collaboration",
+    stack: ['React 19', 'Tailwind', 'GenAI SDK', 'Gemini'],
+    images: ['images/projects/syncspace/overview.png'],
+    modalImages: [
+      'images/projects/syncspace/dashboard.png',
+      'images/projects/syncspace/projects.png',
+      'images/projects/syncspace/activity.png'
+    ],
+    description: (
+      <>
+        <p style={{ marginBottom: '1rem' }}>
+          A web-based application designed to bridge the gap between casual chat and heavy project management. Engineered for remote partners working in different time zones.
+        </p>
+        <p>
+          <strong>Focus:</strong> "Context Preservation" and "Baton Passing" workflow to reduce anxiety in asynchronous collaboration.
+        </p>
+      </>
+    ),
+    fullDescription: (
+      <>
+        <p style={{ marginBottom: '1rem' }}>
+          SyncSpace is not about managing tasks; it is about managing momentum. By combining the "Baton" workflow with AI summarization and a calm, tactile UI, it ensures alignment even with a 12-hour timezone difference.
+        </p>
+
+        <h4 style={{ fontSize: '1.1rem', color: 'var(--text-primary)', marginTop: '1.5rem', marginBottom: '0.5rem' }}>Core Features</h4>
+        <ul style={{ listStyle: 'disc', listStylePosition: 'inside', color: 'var(--text-secondary)', marginBottom: '1rem' }}>
+          <li><strong>Baton Passing System:</strong> Binary project states ("Your Turn", "Waiting", "Shared") to clarify responsibility.</li>
+          <li><strong>Context Snapshots:</strong> Dedicated "Where we left off" notes for the future self or partner.</li>
+          <li><strong>AI Smart Summarization:</strong> Uses Gemini to generate bulleted summaries of activity since the user's last login.</li>
+          <li><strong>Relationship-Based Workspace:</strong> Organizes projects by "Friendship" rather than generic teams.</li>
+        </ul>
+      </>
+    )
+  }
+];
+
+// Content for sections
 // Content for sections
 const SystemOverview = () => (
   <div className="section-content fade-in">
-    <header style={{ marginBottom: '1.5rem' }}>
-      <h2 style={{ fontSize: '2rem', marginBottom: '1rem' }}>About Me</h2>
-      <WaveformDivider type="noise" />
-    </header>
+    <div className="section-header">
+      <h2 className="section-title">ABOUT<br />ME</h2>
+    </div>
 
-    <div className="profile-section">
-      <div className="profile-text">
-        <p style={{ marginBottom: '1.5rem' }}>
-          Hey! I'm a Computer Engineering student at the University of Texas at Arlington, graduating May 2026. I love building things that bridge the gap between code and the physical world.
+    <div className="swiss-grid">
+      {/* Column 1: Main Content with Floated Image */}
+      <div style={{ gridColumn: 'span 9' }}>
+        <div style={{
+          float: 'right',
+          width: '320px',
+          marginLeft: '2rem',
+          marginBottom: '1rem',
+          position: 'relative'
+        }}>
+          <div style={{ position: 'relative', overflow: 'hidden', border: '1px solid var(--accent-main)' }}>
+            <img
+              src="images/profile.jpg"
+              alt="Rafiqul Islam"
+              className="profile-photo"
+              style={{ width: '100%', display: 'block' }}
+            />
+            <div style={{
+              position: 'absolute',
+              bottom: 0,
+              left: 0,
+              background: 'var(--accent-main)',
+              color: 'var(--bg-main)',
+              padding: '0.25rem 0.75rem',
+              fontWeight: 700,
+              fontSize: '0.7rem',
+              letterSpacing: '0.05em',
+              zIndex: 10
+            }}>
+              EST. 2003
+            </div>
+          </div>
+        </div>
+
+        <p style={{ fontFamily: '"Source Sans 3", sans-serif', fontSize: '1.25rem', lineHeight: '1.6', marginBottom: '2rem', color: 'var(--text-primary)' }}>
+          I’ve always been drawn to creating. Starting with digital art and evolving into code, circuits, and sound.
         </p>
-        <p style={{ marginBottom: '1.5rem' }}>
-          Whether it's programming microcontrollers, working on autonomous robots, or diving into machine learning research, I'm happiest when I'm solving problems that actually <strong style={{ color: 'var(--text-primary)' }}>do something</strong> in the real world.
+        <p style={{ fontFamily: '"Source Sans 3", sans-serif', fontSize: '1.25rem', lineHeight: '1.6', marginBottom: '2rem', color: 'var(--text-primary)' }}>
+          Studying <span style={{ color: 'var(--accent-main)', fontWeight: 600 }}>Computer Engineering</span> at UT Arlington shifted my perspective, helping me see technology not just as tools, but as creative mediums to shape visual, sonic, and interactive experiences.
         </p>
-        <p>
-          Right now, I'm working on an autonomous ground robot for the IGVC competition and exploring AI/IoT security through research. When I'm not debugging firmware or tuning navigation algorithms, you'll find me competing in hackathons, building quirky apps and websites that solve my own problems (or are just plain fun), or practicing guitar — slowly learning to speak the language that comes straight from the heart.
+        <p style={{ fontFamily: '"Source Sans 3", sans-serif', fontSize: '1.25rem', lineHeight: '1.6', marginBottom: '2rem', color: 'var(--text-primary)' }}>
+          Now, I focus on blending creativity with an <strong style={{ color: 'var(--text-primary)', fontWeight: 600 }}>engineering mindset</strong> through photography, videography, audio, and design - building work that’s both structured and expressive.
         </p>
+        <p style={{ fontFamily: '"Source Sans 3", sans-serif', fontSize: '1.25rem', lineHeight: '1.6', marginBottom: '2rem', color: 'var(--text-primary)' }}>
+          At the core, I just want to create things that feel real - things people can <strong style={{ color: 'var(--accent-main)', fontWeight: 700 }}>See, Hear, and Connect</strong> with.
+        </p>
+        <blockquote style={{
+          borderLeft: '4px solid var(--accent-main)',
+          paddingLeft: '1.5rem',
+          fontSize: '1.25rem',
+          fontStyle: 'italic',
+          color: 'var(--text-primary)',
+          margin: '2rem 0',
+          clear: 'none'
+        }}>
+          “All that matters is that you are making something you love, to the best of your ability, here and now.”
+          <footer style={{ fontSize: '0.9rem', marginTop: '0.5rem', color: 'var(--text-secondary)', fontStyle: 'normal' }}>― Rick Rubin, The Creative Act</footer>
+        </blockquote>
       </div>
-      <div className="profile-image-container">
-        <img
-          src="images/profile_photo.jpg"
-          alt="Profile"
-          className="profile-image"
-        />
+
+      {/* Column 2: Stats/Focus Areas */}
+      <div style={{ gridColumn: 'span 3', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+        <div style={{ background: 'var(--bg-surface)', padding: '2rem' }}>
+          <h4 style={{ marginBottom: '1rem' }}>Focus Areas</h4>
+          <ul style={{ listStyle: 'none', padding: 0 }}>
+            {['Graphic Design & Visual Communication', 'Film & Video Production', 'Creative Audio & Sound Design', 'Creative Technology & Engineering', 'Photography & Storytelling'].map(item => (
+              <li key={item} style={{ marginBottom: '0.5rem', borderBottom: '1px solid var(--border-lines)', paddingBottom: '0.5rem' }}>{item}</li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
 
-    <section style={{ marginTop: '2rem' }}>
-      <h3 style={{ fontSize: '1.25rem', marginBottom: '1.5rem', borderBottom: '1px solid var(--border-lines)', paddingBottom: '0.5rem' }}>What I Do</h3>
-      <ul style={{ listStyle: 'none', marginLeft: '0' }}>
+    {/* Full Width: Skills Matrix */}
+    <div style={{ gridColumn: '1 / -1', marginTop: '4rem' }}>
+      <h3 style={{ fontSize: '1.5rem', marginBottom: '2rem', borderBottom: '2px solid var(--accent-main)', display: 'inline-block' }}>Technical Arsenal</h3>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '2rem' }}>
         {[
-          "Real-time embedded systems on ARM Cortex-M",
-          "Autonomous robotics with ROS2 and sensor fusion",
-          "Machine learning & neural network development",
-          "Research in AI-enabled IoT and optimization systems"
-        ].map((item, i) => (
-          <li key={i} style={{ marginBottom: '0.75rem', display: 'flex', gap: '0.75rem', color: 'var(--text-secondary)' }}>
-            <span style={{ color: 'var(--accent-main)' }}>//</span> {item}
-          </li>
-        ))}
-      </ul>
-    </section>
-
-    <section style={{ marginTop: '4rem' }}>
-      <h3 style={{ fontSize: '1.25rem', marginBottom: '2rem', borderBottom: '1px solid var(--border-lines)', paddingBottom: '0.5rem' }}>Technical Skills</h3>
-      <div className="technical-skills-grid">
-        {[
-          {
-            title: "Machine Learning",
-            items: [
-              "Python, PyTorch",
-              "Neural networks & model evaluation",
-              "Multi-fidelity surrogate models",
-              "Data analysis & visualization"
-            ]
-          },
-          {
-            title: "Embedded & Firmware",
-            items: [
-              "Bare-metal ARM (STM32, TM4C)",
-              "FreeRTOS, interrupts, memory",
-              "DSP & real-time audio processing",
-              "Sensor integration & motor control"
-            ]
-          },
-          {
-            title: "Languages",
-            items: [
-              "C, C++",
-              "Python, Bash",
-              "ARM Assembly",
-              "Version Control: Git/GitHub"
-            ]
-          },
-          {
-            title: "Interfaces & Peripherals",
-            items: [
-              "SPI, I2C, UART",
-              "PWM, ADC/DAC, GPIO",
-              "I2S audio streaming",
-              "Sensor protocols (GPS, IMU, LiDAR)"
-            ]
-          },
-          {
-            title: "Debugging & Tools",
-            items: [
-              "Oscilloscope, Logic Analyzer",
-              "GDB, CMake, Linux CLI",
-              "Code Composer Studio",
-              "Custom PCB bring-up & validation"
-            ]
-          },
-          {
-            title: "Robotics & Systems",
-            items: [
-              "ROS2, computer vision",
-              "GPS/IMU/LiDAR fusion",
-              "Navigation algorithms",
-              "Real-time perception pipelines"
-            ]
-          }
-        ].map((area, i) => (
-          <div key={i} style={{ background: 'var(--bg-surface)', padding: '1.5rem', border: '1px solid var(--border-lines)' }}>
-            <h4 style={{ fontSize: '1rem', marginBottom: '1rem', color: 'var(--text-primary)' }}>{area.title}</h4>
-            <ul style={{ listStyle: 'none', fontSize: '0.9rem', color: 'var(--text-secondary)' }}>
-              {area.items.map((item, j) => (
-                <li key={j} style={{ marginBottom: '0.5rem', paddingLeft: '1rem', borderLeft: '2px solid var(--border-lines)' }}>
-                  {item}
-                </li>
-              ))}
+          { title: "Languages", items: ["C/C++", "Python", "ARM Assembly", "Bash"] },
+          { title: "Hardware", items: ["STM32", "TM4C123", "NVIDIA Jetson", "FPGA"] },
+          { title: "Protocols", items: ["I2C/SPI/UART", "CAN Bus", "Ethernet", "MQTT"] },
+          { title: "Tools", items: ["ROS 2", "Altium/KiCad", "Docker", "PyTorch"] }
+        ].map((cat, i) => (
+          <div key={i}>
+            <h4 style={{ color: 'var(--accent-main)', marginBottom: '1rem' }}>{cat.title}</h4>
+            <ul style={{ listStyle: 'none', padding: 0, color: 'var(--text-secondary)' }}>
+              {cat.items.map(skill => <li key={skill} style={{ marginBottom: '0.25rem' }}>{skill}</li>)}
             </ul>
           </div>
         ))}
       </div>
-    </section>
+    </div>
 
-    <section style={{ marginTop: '4rem' }}>
-      <h3 style={{ fontSize: '1.25rem', marginBottom: '1.5rem', borderBottom: '1px solid var(--border-lines)', paddingBottom: '0.5rem' }}>Quick Stats</h3>
-      <div className="stats-grid">
-        {[
-          { label: "Graduating", value: "May 2026" },
-          { label: "Focus", value: "Embedded & Robotics" },
-          { label: "Languages", value: "C/C++, Python" },
-          { label: "Hardware", value: "STM32, TM4C, Jetson" },
-          { label: "Research", value: "AI/IoT Security" }
-        ].map((param, i) => (
-          <div key={i} style={{ background: 'var(--code-block)', padding: '0.75rem' }}>
-            <span style={{ display: 'block', color: 'var(--text-secondary)', fontSize: '0.75rem', marginBottom: '0.25rem' }}>{param.label.toUpperCase()}</span>
-            <span style={{ color: 'var(--text-primary)' }}>{param.value}</span>
-          </div>
-        ))}
+    {SHOW_RESUME && (
+      <div style={{ marginTop: '6rem', background: 'var(--accent-main)', padding: '4rem', textAlign: 'center' }}>
+        <h2 style={{ color: 'var(--bg-main)', marginBottom: '1rem' }}>LOOKING FOR THE CV?</h2>
+        <a href="resume.pdf" target="_blank" rel="noopener noreferrer" style={{
+          display: 'inline-block',
+          background: 'white',
+          color: 'var(--accent-main)',
+          padding: '1rem 3rem',
+          fontWeight: 700,
+          fontSize: '1.25rem',
+          textTransform: 'uppercase'
+        }}>
+          Download PDF
+        </a>
       </div>
-    </section>
-
-    <section style={{ marginTop: '4rem', marginBottom: '4rem' }}>
-      <h3 style={{ fontSize: '1.25rem', marginBottom: '1.5rem', borderBottom: '1px solid var(--border-lines)', paddingBottom: '0.5rem' }}>My Philosophy</h3>
-      <div style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap', marginBottom: '1.5rem' }}>
-        {["Build to learn", "Debug with data", "Ship things that work", "Stay curious"].map((item, i) => (
-          <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--text-secondary)' }}>
-            <div style={{ width: '6px', height: '6px', background: 'var(--accent-main)' }}></div>
-            {item}
-          </div>
-        ))}
-      </div>
-      <p style={{ maxWidth: '65ch', fontSize: '1.125rem', color: 'var(--text-secondary)' }}>
-        I believe the best way to understand something is to build it. Whether it's a custom RTOS kernel or an autonomous robot, I'm driven by the challenge of making complex systems actually work.
-      </p>
-
-      {SHOW_RESUME && (
-        <div style={{ marginTop: '3rem', borderTop: '1px solid var(--border-lines)', paddingTop: '2rem' }}>
-          <h4 style={{ fontSize: '1.1rem', color: 'var(--text-primary)', marginBottom: '1rem' }}>Resume / CV</h4>
-          <a href="resume.pdf" target="_blank" rel="noopener noreferrer" className="resume-button">
-            <FileText size={20} />
-            <span>Download Resume</span>
-            <Download size={16} style={{ marginLeft: 'auto', opacity: 0.6 }} />
-          </a>
-          <p style={{ marginTop: '1rem', fontSize: '0.875rem', color: 'var(--text-secondary)', fontFamily: 'var(--font-mono)' }}>
-            [ PDF Format ]
-          </p>
-        </div>
-      )}
-    </section>
+    )}
   </div>
 );
 
 // Research Section
 const Research = () => (
   <div className="section-content fade-in">
-    <header style={{ marginBottom: '3rem' }}>
-      <h2 style={{ fontSize: '2rem', marginBottom: '1rem' }}>Research & Publications</h2>
-      <WaveformDivider type="noise" />
-    </header>
+    <div className="section-header">
+      <h2 className="section-title">RESEARCH<br />LAB</h2>
+    </div>
 
-    <section style={{ marginBottom: '3rem' }}>
-      <h3 style={{ fontSize: '1.25rem', marginBottom: '2rem', borderBottom: '1px solid var(--border-lines)', paddingBottom: '0.5rem' }}>Publications & Manuscripts</h3>
-
-      {[
-        {
-          title: "The Secure AI-Enabled IoT Edge: Attacks, Lightweight Defenses, and Privacy Challenges",
-          subtitle: "A Systematic Review",
-          status: "Under Review",
-          date: "Dec 2025",
-          description: "Co-authored a systematic review on AI-enabled IoT edge security and privacy. Synthesized threats, lightweight defenses, and evaluation practices across peer-reviewed literature. Supported taxonomy development and comparative analysis of edge-feasible defenses."
-        },
-        {
-          title: "Green Energy Management Software (GEMS)",
-          subtitle: "AI-Driven Optimization of Hybrid Renewable Powerplants",
-          status: "Manuscript",
-          date: "Dec 2025",
-          description: "Co-developed a nature-inspired metaheuristic optimization engine for Green Energy Management Software to optimize hybrid renewable energy systems. Designed multi-criteria decision-making (MCDM) algorithms integrating AHP, TOPSIS, and fuzzy logic."
-        },
-        {
-          title: "Improving Memorability of System-Assigned Random Passwords",
-          subtitle: "Using Graphical and Textual Cues",
-          status: "Manuscript",
-          date: "Jan 2026",
-          description: "Co-developed a cue-based framework for learning system-assigned high-entropy passwords using graphical cues, chunking, and keystroke reinforcement. Contributed to methodology and experimental evaluation with high recall accuracy over time."
-        }
-      ].map((paper, index) => (
-        <article key={index} style={{
-          background: 'var(--bg-surface)',
-          border: '1px solid var(--border-lines)',
-          padding: '1.5rem',
-          marginBottom: '1.5rem'
-        }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.5rem', flexWrap: 'wrap', gap: '0.5rem' }}>
-            <span style={{
-              background: paper.status === 'Under Review' ? 'rgba(251, 191, 36, 0.2)' : 'rgba(34, 197, 94, 0.2)',
-              color: paper.status === 'Under Review' ? '#fbbf24' : '#22c55e',
-              padding: '0.25rem 0.75rem',
-              fontSize: '0.75rem',
-              fontFamily: 'var(--font-mono)'
-            }}>
-              {paper.status}
-            </span>
-            <span style={{ color: 'var(--text-secondary)', fontSize: '0.875rem', fontFamily: 'var(--font-mono)' }}>
-              {paper.date}
-            </span>
-          </div>
-          <h4 style={{ fontSize: '1.1rem', color: 'var(--text-primary)', marginBottom: '0.25rem' }}>
-            {paper.title}
-          </h4>
-          <p style={{ fontSize: '0.9rem', color: 'var(--accent-main)', fontFamily: 'var(--font-mono)', marginBottom: '1rem' }}>
-            // {paper.subtitle}
-          </p>
-          <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', lineHeight: '1.6' }}>
-            {paper.description}
-          </p>
-        </article>
-      ))}
-    </section>
-
-    <section>
-      <h3 style={{ fontSize: '1.25rem', marginBottom: '2rem', borderBottom: '1px solid var(--border-lines)', paddingBottom: '0.5rem' }}>Research Experience</h3>
-
-      <article style={{
-        background: 'var(--bg-surface)',
-        border: '1px solid var(--border-lines)',
-        padding: '1.5rem',
-        marginBottom: '1.5rem'
-      }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.75rem', flexWrap: 'wrap', gap: '0.5rem' }}>
-          <div>
-            <h4 style={{ fontSize: '1.1rem', color: 'var(--text-primary)', marginBottom: '0.25rem' }}>Research Assistant</h4>
-            <p style={{ color: 'var(--accent-main)', fontFamily: 'var(--font-mono)', fontSize: '0.9rem' }}>University of Texas at Arlington Research Institute (UTARI)</p>
-          </div>
-          <span style={{ color: 'var(--text-secondary)', fontSize: '0.875rem', fontFamily: 'var(--font-mono)' }}>
-            Jan 2023 – Mar 2023
-          </span>
-        </div>
-        <ul style={{ listStyle: 'none', color: 'var(--text-secondary)', fontSize: '0.95rem' }}>
-          <li style={{ marginBottom: '0.5rem', display: 'flex', gap: '0.75rem' }}>
-            <span style={{ color: 'var(--accent-main)' }}>•</span>
-            Developed multi-fidelity neural networks achieving &gt;92% predictive accuracy
-          </li>
-          <li style={{ marginBottom: '0.5rem', display: 'flex', gap: '0.75rem' }}>
-            <span style={{ color: 'var(--accent-main)' }}>•</span>
-            Reduced reliance on high-cost simulations by 60% through model-driven surrogate predictions
-          </li>
-          <li style={{ display: 'flex', gap: '0.75rem' }}>
-            <span style={{ color: 'var(--accent-main)' }}>•</span>
-            Collaborated in R&D workflow with iterative experimentation and reporting
-          </li>
-        </ul>
-      </article>
-
-      <article style={{
-        background: 'var(--bg-surface)',
-        border: '1px solid var(--border-lines)',
-        padding: '1.5rem'
-      }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.75rem', flexWrap: 'wrap', gap: '0.5rem' }}>
-          <div>
-            <h4 style={{ fontSize: '1.1rem', color: 'var(--text-primary)', marginBottom: '0.25rem' }}>UR2PhD Research Training</h4>
-            <p style={{ color: 'var(--accent-main)', fontFamily: 'var(--font-mono)', fontSize: '0.9rem' }}>Computing Research Association (CRA)</p>
-          </div>
-          <span style={{ color: 'var(--text-secondary)', fontSize: '0.875rem', fontFamily: 'var(--font-mono)' }}>
-            Sep 2025
-          </span>
-        </div>
-        <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', lineHeight: '1.6' }}>
-          Completed UR2PhD Undergraduate Pre-Research Experience program focused on reading technical papers, conducting literature searches, and analyzing/visualizing experimental data.
+    <div className="swiss-grid">
+      {/* Introduction */}
+      <div style={{ gridColumn: 'span 4' }}>
+        <p style={{ fontSize: '1.25rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
+          My academic work focuses on <strong style={{ color: 'var(--accent-main)' }}>AI-enabled IoT Security</strong> and <strong style={{ color: 'var(--accent-main)' }}>Optimization Algorithms</strong>. I aim to publish actionable findings that protect edge devices and improve system efficiency.
         </p>
-      </article>
-    </section>
-
-    <section style={{ marginTop: '3rem', padding: '2rem', background: 'var(--code-block)', border: '1px dashed var(--border-lines)' }}>
-      <h4 style={{ fontSize: '1rem', color: 'var(--text-primary)', marginBottom: '1rem' }}>Education & Recognition</h4>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
-        <div>
-          <span style={{ display: 'block', color: 'var(--text-secondary)', fontSize: '0.75rem', marginBottom: '0.25rem', fontFamily: 'var(--font-mono)' }}>UNIVERSITY</span>
-          <span style={{ color: 'var(--text-primary)' }}>UT Arlington</span>
-        </div>
-        <div>
-          <span style={{ display: 'block', color: 'var(--text-secondary)', fontSize: '0.75rem', marginBottom: '0.25rem', fontFamily: 'var(--font-mono)' }}>DEGREE</span>
-          <span style={{ color: 'var(--text-primary)' }}>B.S. Computer Engineering</span>
-        </div>
-        <div>
-          <span style={{ display: 'block', color: 'var(--text-secondary)', fontSize: '0.75rem', marginBottom: '0.25rem', fontFamily: 'var(--font-mono)' }}>GRADUATION</span>
-          <span style={{ color: 'var(--text-primary)' }}>May 2026</span>
-        </div>
-        <div>
-          <span style={{ display: 'block', color: 'var(--text-secondary)', fontSize: '0.75rem', marginBottom: '0.25rem', fontFamily: 'var(--font-mono)' }}>HONORS</span>
-          <span style={{ color: 'var(--text-primary)' }}>Honor's College, Maverick Scholarship</span>
-        </div>
       </div>
-    </section>
+
+      {/* Papers List */}
+      <div style={{ gridColumn: 'span 8', display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+        {[
+          {
+            title: "A Novel Optimization Model for Cost-effective Sustainable Power Plant",
+            subtitle: "Raid, G. A. (First Author), Islam, M. T., Swapnil, F. M. | Applied Energy (Elsevier)",
+            status: "Submitted",
+            date: "Jan 2026",
+            description: "Developed a Direct Numerical Solution Optimization Algorithm (DNSOA) and compared performance against 7 Nature-Inspired Meta-Heuristic Multi-Objective Algorithms (e.g., NSGA-II, PSO). Integrated LSTM neural networks to predict future source availability, achieving a 0.12% reduction in system uncertainty and an ~88% reduction in pollutant emissions."
+          },
+          {
+            title: "Investigation of Turbulence Model in CFD Flow for NACA 2412 Airfoil at High Reynolds Number",
+            subtitle: "Raid, G. A. (First Author) | Applied Energy (Elsevier)",
+            status: "Submitted",
+            date: "Jan 2026",
+            description: "Conducted a CFD study on NACA 2412 airfoils at high Reynolds numbers (1.3 × 10⁶) to analyze lift, drag, and aerodynamic efficiency. Evaluated 11 RANS turbulence models utilizing a Multi-Criteria Decision Making (MCDM) algorithm based on TOPSIS to identify optimal solvers."
+          },
+          {
+            title: "Multi-Criteria Decision Making–Based Selection of RANS Turbulence Models for CFD Analysis of NACA 2412 Airfoil",
+            subtitle: "Raid, G. A. (First Author), Islam, M. T. | Int. Journal for Computational Methods in Engineering Science and Mechanics",
+            status: "Submitted",
+            date: "Jan 2026",
+            description: "Analyzed airflow at a moderate Reynolds number of 6.6 × 10⁵ using hybrid mesh topology in ANSYS Fluent. Applied MCDM algorithms to rank 11 RANS models, determining the Transition SST model achieved the least deviation (9.23%) against X-Foil data."
+          },
+          {
+            title: "The Secure AI-Enabled IoT Edge: Attacks, Lightweight Defenses, and Privacy Challenges: A Systematic Review",
+            subtitle: "Chowdhury, A., Moriwam, Islam, M. M., Tabassum, M., Raid, G. A. (Co-author) | Data Science and Management",
+            status: "Submitted",
+            date: "Dec 2025",
+            description: "Co-authored a systematic review on AI-enabled IoT edge security. Synthesized threats, lightweight defenses, and privacy-preserving learning practices across peer-reviewed literature."
+          }
+        ].map((paper, i) => (
+          <article key={i} style={{ borderTop: '1px solid var(--border-lines)', paddingTop: '1.5rem' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem', opacity: 0.6, fontSize: '0.9rem', fontFamily: 'var(--font-mono)' }}>
+              <span>{paper.status.toUpperCase()}</span>
+              <span>{paper.date}</span>
+            </div>
+            <h3 style={{ fontSize: '1.75rem', marginBottom: '0.5rem', lineHeight: '1.2' }}>{paper.title}</h3>
+            <p style={{ color: 'var(--accent-main)', fontWeight: 500, marginBottom: '1rem' }}>{paper.subtitle}</p>
+            <p style={{ color: 'var(--text-secondary)', maxWidth: '65ch' }}>{paper.description}</p>
+          </article>
+        ))}
+      </div>
+    </div>
   </div>
 );
 
-const BuildLog = ({ title, goal, stack, date, status, images, repoLink, onSeeMore, children }) => (
-  <article className="project-article">
-    <div className="project-header">
-      <span>{date}</span>
-      <span>
-        Status: <span style={{ color: status === 'COMPLETED' ? 'var(--accent-main)' : '#fbbf24' }}>{status}</span>
-      </span>
-    </div>
-    <h3 style={{ fontSize: '1.5rem', marginBottom: '1.5rem' }}>{title}</h3>
-
-    <div className="project-grid">
-      <div className="project-meta">
-        <div style={{ marginBottom: '1rem' }}>
-          <strong style={{ display: 'block', color: 'var(--text-primary)', marginBottom: '0.25rem' }}>Goal</strong>
-          {goal}
-        </div>
-        <div>
-          <strong style={{ display: 'block', color: 'var(--text-primary)', marginBottom: '0.25rem' }}>Technologies</strong>
-          {stack.join(', ')}
-        </div>
-        {repoLink && (
-          <div style={{ marginTop: '1rem' }}>
-            <a
-              href={repoLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '0.5rem',
-                color: 'var(--accent-main)',
-                textDecoration: 'none',
-                borderBottom: '1px solid var(--accent-main)'
-              }}
-            >
-              [ View Code ]
-            </a>
-          </div>
-        )}
-      </div>
-      <div className="project-content">
-        <div className="project-content-inner">
-          {images && images.length > 0 && (
+const BuildLog = ({ title, goal, stack, date, status, images, repoLink, videoLink, onSeeMore, children }) => (
+  <article style={{ marginBottom: '6rem' }}>
+    <div className="swiss-grid">
+      {/* Image Area - Span 7 */}
+      <div style={{ gridColumn: 'span 7', position: 'relative' }}>
+        {images && images.length > 0 && (
+          <div style={{ position: 'relative', overflow: 'hidden' }}>
             <img
               src={images[0]}
               alt={title}
-              className="project-image"
+              style={{ width: '100%', display: 'block', filter: 'grayscale(100%) contrast(1.2)' }}
             />
-          )}
-          <div style={{ flex: 1, minWidth: '300px' }}>
-            {children}
-            <button
-              onClick={onSeeMore}
-              style={{
-                marginTop: '1rem',
-                background: 'none',
-                border: 'none',
-                color: 'var(--accent-main)',
-                cursor: 'pointer',
-                fontFamily: 'var(--font-mono)',
-                fontSize: '0.9rem',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.5rem',
-                padding: 0
-              }}
-            >
-              [ See More ] <ArrowUpRight size={16} />
-            </button>
+            <div style={{
+              position: 'absolute',
+              bottom: 0,
+              left: 0,
+              background: 'var(--accent-main)',
+              color: 'var(--bg-main)',
+              padding: '0.5rem 1rem',
+              fontSize: '0.8rem',
+              fontWeight: 700
+            }}>
+              {status}
+            </div>
           </div>
+        )}
+      </div>
+
+      {/* Content Area - Span 5 */}
+      <div style={{ gridColumn: 'span 5', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+        <div style={{ marginBottom: '1rem', borderBottom: '4px solid var(--accent-main)', display: 'inline-block', paddingBottom: '0.5rem' }}>
+          <span style={{ fontSize: '3rem', fontWeight: 700, lineHeight: 1 }}>{date.slice(0, 4)}</span>
+        </div>
+        <h3 style={{ fontSize: '2.5rem', lineHeight: 1, marginBottom: '1.5rem', textTransform: 'uppercase' }}>
+          {title}
+        </h3>
+
+        <div style={{ marginBottom: '2rem' }}>
+          <strong style={{ display: 'block', color: 'var(--accent-main)', marginBottom: '0.5rem', fontSize: '0.9rem' }}>Stack</strong>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
+            {stack.map(tech => (
+              <span key={tech} style={{ border: '1px solid #555', padding: '0.25rem 0.5rem', fontSize: '0.8rem' }}>{tech}</span>
+            ))}
+          </div>
+        </div>
+
+        <div style={{ color: 'var(--text-secondary)', marginBottom: '2rem' }}>
+          {children}
+        </div>
+
+        <div style={{ display: 'flex', gap: '1rem' }}>
+          <button
+            onClick={onSeeMore}
+            style={{
+              background: 'var(--text-primary)',
+              color: 'var(--bg-main)',
+              border: 'none',
+              padding: '1rem 2rem',
+              cursor: 'pointer',
+              fontWeight: 700
+            }}
+          >
+            Expand Project
+          </button>
+          {repoLink && (
+            <a href={repoLink} target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '3rem', border: '1px solid #555' }}>
+              <Github size={20} />
+            </a>
+          )}
+          {videoLink && (
+            <a href={videoLink} target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '3rem', border: '1px solid var(--accent-main)', color: 'var(--accent-main)' }}>
+              <Youtube size={20} />
+            </a>
+          )}
         </div>
       </div>
     </div>
@@ -596,10 +593,9 @@ const BuildLog = ({ title, goal, stack, date, status, images, repoLink, onSeeMor
 
 const Projects = ({ onProjectSelect }) => (
   <div className="section-content fade-in">
-    <header style={{ marginBottom: '3rem' }}>
-      <h2 style={{ fontSize: '2rem', marginBottom: '1rem' }}>Selected Projects</h2>
-      <WaveformDivider type="square" />
-    </header>
+    <div className="section-header">
+      <h2 className="section-title">SELECTED<br />WORKS</h2>
+    </div>
 
     {PROJECTS_DATA.map((project, index) => (
       <BuildLog
@@ -649,64 +645,26 @@ const HardwareInterfaces = () => {
 
   return (
     <div className="section-content fade-in">
-      <header style={{ marginBottom: '3rem' }}>
-        <h2 style={{ fontSize: '2rem', marginBottom: '1rem' }}>Silicon Arsenal</h2>
-        <WaveformDivider type="square" />
-        <p style={{ marginTop: '1rem', color: 'var(--text-secondary)', maxWidth: '60ch' }}>
-          My daily drivers for bringing code to the physical world.
-        </p>
-      </header>
+      <div className="section-header">
+        <h2 className="section-title">HARDWARE<br />ARSENAL</h2>
+      </div>
 
-      <div className="hardware-grid">
+      <div className="swiss-grid">
         {hardwareItems.map((item, index) => (
-          <div key={index} style={{
-            background: 'var(--bg-surface)',
-            border: '1px solid var(--border-lines)',
-            overflow: 'hidden',
-            display: 'flex',
-            flexDirection: 'column'
-          }}>
-            <div style={{ height: '200px', overflow: 'hidden', borderBottom: '1px solid var(--border-lines)' }}>
-              <img
-                src={item.image}
-                alt={item.title}
-                style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.3s' }}
-                onMouseOver={e => e.currentTarget.style.transform = 'scale(1.05)'}
-                onMouseOut={e => e.currentTarget.style.transform = 'scale(1)'}
-              />
+          <div key={index} style={{ gridColumn: 'span 6', background: 'var(--bg-surface)', padding: '2rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+            <div style={{ height: '240px', overflow: 'hidden', marginBottom: '1rem' }}>
+              <img src={item.image} alt={item.title} style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'grayscale(100%)' }} />
             </div>
-            <div style={{ padding: '1.5rem', flex: 1, display: 'flex', flexDirection: 'column' }}>
-              <div style={{ marginBottom: '1rem' }}>
-                <h3 style={{ fontSize: '1.25rem', color: 'var(--text-primary)', marginBottom: '0.25rem' }}>{item.title}</h3>
-                <span style={{ fontSize: '0.875rem', color: 'var(--accent-main)', fontFamily: 'var(--font-mono)' }}>// {item.subtitle}</span>
-              </div>
-
-              <div style={{ marginBottom: '1.5rem' }}>
-                {item.specs.map((spec, i) => (
-                  <span key={i} style={{
-                    display: 'inline-block',
-                    background: 'var(--code-block)',
-                    padding: '0.25rem 0.5rem',
-                    fontSize: '0.75rem',
-                    marginRight: '0.5rem',
-                    marginBottom: '0.5rem',
-                    color: 'var(--text-secondary)',
-                    borderRadius: '4px'
-                  }}>
-                    {spec}
-                  </span>
-                ))}
-              </div>
-
-              <p style={{ fontSize: '0.95rem', color: 'var(--text-secondary)', lineHeight: '1.6', marginTop: 'auto' }}>
-                {item.useCase}
-              </p>
-            </div>
+            <h3 style={{ fontSize: '1.5rem' }}>{item.title}</h3>
+            <p style={{ color: 'var(--accent-main)', fontWeight: 700 }}>{item.subtitle.toUpperCase()}</p>
+            <ul style={{ listStyle: 'none', padding: 0, color: 'var(--text-secondary)' }}>
+              {item.specs.map(spec => <li key={spec} style={{ borderBottom: '1px solid var(--border-lines)', padding: '0.5rem 0' }}>{spec}</li>)}
+            </ul>
           </div>
         ))}
       </div>
 
-      <div style={{ padding: '2rem', background: 'var(--code-block)', border: '1px dashed var(--border-lines)', textAlign: 'center' }}>
+      <div style={{ padding: '2rem', background: 'var(--bg-surface)', border: '1px dashed var(--border-lines)', textAlign: 'center', marginTop: '4rem' }}>
         <h4 style={{ fontSize: '1.1rem', color: 'var(--text-primary)', marginBottom: '1rem' }}>Lab Instrumentation</h4>
         <div style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap', justifyContent: 'center', color: 'var(--text-secondary)', fontFamily: 'var(--font-mono)', fontSize: '0.9rem' }}>
           <span>[ Tektronix Oscilloscope ]</span>
@@ -720,9 +678,287 @@ const HardwareInterfaces = () => {
   );
 };
 
+const ContactSection = () => (
+  <div className="section-content fade-in">
+    <div className="section-header">
+      <h2 className="section-title">GET IN<br />TOUCH</h2>
+    </div>
+
+    <div className="swiss-grid">
+      <div style={{ gridColumn: 'span 6', background: 'var(--accent-main)', color: 'var(--bg-main)', padding: '3rem', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+        <h3 style={{ fontSize: '3rem', lineHeight: 1, marginBottom: '2rem' }}>LET'S<br />COLLABORATE</h3>
+        <p style={{ fontSize: '1.25rem', lineHeight: '1.6', color: 'var(--bg-main)', maxWidth: '600px', opacity: 0.95 }}>
+          I am currently open to opportunities in Embedded Systems, Robotics, Creative Technology, and Research & Development, with a growing interest in interactive and sound-driven systems.
+        </p>
+        <div style={{ marginTop: 'auto', paddingTop: '3rem' }}>
+          <a href="mailto:gar5128@mavs.uta.edu" style={{ fontSize: '1.5rem', fontWeight: 700, textDecoration: 'underline' }}>
+            gar5128@mavs.uta.edu
+          </a>
+        </div>
+      </div>
+
+      <div style={{ gridColumn: 'span 6', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+        {[
+          { icon: Mail, label: 'Email', value: 'gar5128@mavs.uta.edu', link: "mailto:gar5128@mavs.uta.edu" },
+          { icon: Linkedin, label: 'LinkedIn', value: 'linkedin.com/in/galib-raid', link: "https://www.linkedin.com/in/galib-raid/" },
+          { icon: Github, label: 'GitHub', value: 'github.com/Galib2003', link: "https://github.com/Galib2003" },
+          { icon: Instagram, label: 'Instagram', value: '@riuji_uzu', link: "https://www.instagram.com/riuji_uzu/" }
+        ].map((item, i) => (
+          <a key={i} href={item.link} target="_blank" rel="noopener noreferrer" style={{
+            background: 'var(--bg-surface)',
+            padding: '1.5rem',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '1.5rem',
+            transition: 'all 0.2s',
+            border: '1px solid transparent'
+          }}
+            onMouseOver={e => { e.currentTarget.style.background = 'white'; e.currentTarget.style.border = '1px solid var(--accent-main)'; e.currentTarget.style.transform = 'translateX(10px)'; }}
+            onMouseOut={e => { e.currentTarget.style.background = 'var(--bg-surface)'; e.currentTarget.style.border = '1px solid transparent'; e.currentTarget.style.transform = 'translateX(0)'; }}
+          >
+            <div style={{ background: 'var(--accent-main)', padding: '0.75rem', color: 'var(--bg-main)' }}>
+              <item.icon size={24} />
+            </div>
+            <div>
+              <strong style={{ display: 'block', textTransform: 'uppercase', fontSize: '0.8rem', color: 'var(--text-secondary)', letterSpacing: '0.05em' }}>{item.label}</strong>
+              <span style={{ fontSize: '1.1rem', fontWeight: 500, color: 'var(--text-primary)' }}>{item.value}</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+);
+
+const CreativeWorks = ({ onProjectSelect }) => {
+  return (
+    <div className="section-content fade-in">
+      <div className="section-header">
+        <h2 className="section-title">CREATIVE<br />LAB</h2>
+      </div>
+      <div className="swiss-grid">
+        {CREATIVE_PROJECTS_DATA.map((project, i) => (
+          <div
+            key={i}
+            className="creative-card"
+            onClick={() => onProjectSelect(project)}
+            style={{
+              gridColumn: 'span 6',
+              background: 'var(--bg-surface)',
+              padding: '2rem',
+              border: '1px solid var(--border-lines)',
+              cursor: 'pointer',
+              transition: 'all 0.2s ease',
+              position: 'relative',
+              overflow: 'hidden'
+            }}
+            onMouseOver={e => {
+              e.currentTarget.style.transform = 'translateY(-5px)';
+              e.currentTarget.style.borderColor = 'var(--accent-main)';
+              e.currentTarget.style.boxShadow = '0 10px 30px rgba(0,0,0,0.1)';
+            }}
+            onMouseOut={e => {
+              e.currentTarget.style.transform = 'translateY(0)';
+              e.currentTarget.style.borderColor = 'var(--border-lines)';
+              e.currentTarget.style.boxShadow = 'none';
+            }}
+          >
+            <div style={{ marginBottom: '1rem', display: 'flex', justifyContent: 'space-between' }}>
+              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8rem', color: 'var(--accent-main)' }}>{project.theme.toUpperCase()}</span>
+              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8rem', color: 'var(--text-secondary)' }}>v{project.date}</span>
+            </div>
+
+            <h3 style={{ fontSize: '1.75rem', marginBottom: '1rem' }}>{project.title}</h3>
+            <p style={{ color: 'var(--text-secondary)', marginBottom: '1rem' }}>{project.goal}</p>
+            <div style={{ fontSize: '1rem', color: 'var(--text-primary)', lineHeight: 1.6, marginBottom: '2rem' }}>{project.description}</div>
+
+            <div style={{
+              marginTop: 'auto',
+              fontWeight: 700,
+              fontSize: '0.9rem',
+              textTransform: 'uppercase',
+              letterSpacing: '0.05em',
+              color: 'var(--accent-main)',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.5rem'
+            }}>
+              View Project <ArrowUpRight size={16} />
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+const Gallery = () => {
+  return (
+    <div className="section-content fade-in" style={{ padding: 0 }}>
+      <div className="section-header" style={{ marginBottom: '4rem', paddingLeft: 'calc(5vw + 2rem)', paddingTop: '4rem', paddingRight: '5vw' }}>
+        <h2 className="section-title">GALLERY</h2>
+
+      </div>
+
+      <div style={{
+        width: '100%',
+        margin: '0' // Removed full bleed to prevent left crop under the sidebar
+      }}>
+        {/* Style tag to handle responsive column count */}
+        <style dangerouslySetInnerHTML={{
+          __html: `
+          .studio-masonry-grid { 
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0px; 
+            line-height: 0; 
+          }
+          .studio-grid-item {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            position: relative;
+            overflow: hidden;
+            background: var(--bg-main);
+          }
+          .studio-grid-item img {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+            display: block;
+            transition: opacity 0.2s ease;
+          }
+          @media (max-width: 1024px) {
+            .studio-masonry-grid { grid-template-columns: repeat(2, 1fr); }
+          }
+          @media (max-width: 640px) {
+            .studio-masonry-grid { grid-template-columns: 1fr; }
+          }
+        `}} />
+
+        <div className="studio-masonry-grid">
+          {studioData && studioData.length > 0 ? (
+            studioData.map((post, i) => (
+              <div
+                key={i}
+                className="studio-grid-item"
+              >
+                <img
+                  src={post.imageUrl}
+                  alt={post.alt}
+                />
+              </div>
+            ))
+          ) : (
+            <div style={{ columnSpan: 'all', padding: '4rem', textAlign: 'center', color: 'var(--text-secondary)', border: '1px dashed var(--border-lines)' }}>
+              <ImageIcon size={48} style={{ marginBottom: '1rem', opacity: 0.5, margin: '0 auto' }} />
+              <p style={{ fontSize: '1.2rem', marginBottom: '0.5rem' }}>The Gallery is empty.</p>
+              <p style={{ fontSize: '0.85rem', fontFamily: 'var(--font-mono)' }}>Upload images to public/images/studio and run 'npm run update-studio'.</p>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const ArtDesign = () => {
+    return (
+        <div className="section-content fade-in" style={{ padding: 0 }}>
+            <div className="section-header" style={{ marginBottom: '4rem', paddingLeft: 'calc(5vw + 2rem)', paddingTop: '4rem', paddingRight: '5vw' }}>
+                <h2 className="section-title">ART & DESIGN</h2>
+            </div>
+
+            <div style={{
+                width: '100%',
+                margin: '0'
+            }}>
+                <style dangerouslySetInnerHTML={{
+                    __html: `
+            .art-masonry-grid { 
+              display: grid;
+              grid-template-columns: repeat(3, 1fr);
+              gap: 0px; 
+              line-height: 0; 
+            }
+            .art-grid-item {
+              width: 100%;
+              margin: 0;
+              padding: 0;
+              position: relative;
+              overflow: hidden;
+              background: var(--bg-main);
+            }
+            .art-grid-item img {
+              width: 100%;
+              aspect-ratio: 1 / 1;
+              object-fit: cover;
+              display: block;
+              transition: opacity 0.2s ease;
+            }
+            @media (max-width: 1024px) {
+              .art-masonry-grid { grid-template-columns: repeat(2, 1fr); }
+            }
+            @media (max-width: 640px) {
+              .art-masonry-grid { grid-template-columns: 1fr; }
+            }
+          `}} />
+
+                <div className="art-masonry-grid">
+                    {artDesignData && artDesignData.length > 0 ? (
+                        artDesignData.map((post, i) => (
+                            <div
+                                key={i}
+                                className="art-grid-item"
+                            >
+                                <img
+                                    src={post.imageUrl}
+                                    alt={post.alt}
+                                />
+                            </div>
+                        ))
+                    ) : (
+                        <div style={{ padding: '4rem', textAlign: 'center', color: 'var(--text-secondary)', border: '1px dashed var(--border-lines)' }}>
+                            <ImageIcon size={48} style={{ marginBottom: '1rem', opacity: 0.5, margin: '0 auto' }} />
+                            <p style={{ fontSize: '1.2rem', marginBottom: '0.5rem' }}>The Art & Design gallery is empty.</p>
+                            <p style={{ fontSize: '0.85rem', fontFamily: 'var(--font-mono)' }}>Upload images to public/images/art_design and run 'npm run update-studio'.</p>
+                        </div>
+                    )}
+                </div>
+            </div>
+        </div>
+    );
+};
+
+const PrintLayout = () => (
+  <div className="print-layout">
+    <div className="print-section"><SystemOverview /></div>
+    <div className="print-section"><Research /></div>
+    <div className="print-section"><Projects onProjectSelect={() => { }} /></div>
+    <div className="print-section"><HardwareInterfaces /></div>
+    <div className="print-section"><CreativeWorks onProjectSelect={() => { }} /></div>
+    <div className="print-section"><ArtDesign /></div>
+    <div className="print-section"><Gallery /></div>
+    <div className="print-section"><ContactSection /></div>
+  </div>
+);
+
 function App() {
   const [currentSection, setCurrentSection] = useState('overview');
   const [selectedProject, setSelectedProject] = useState(null);
+
+  // Scroll to top on section change
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [currentSection]);
+
+  // Check for print mode
+  const searchParams = new URLSearchParams(window.location.search);
+  const isPrintMode = searchParams.get('print') === 'true';
+
+  if (isPrintMode) {
+    return <PrintLayout />;
+  }
 
   const renderSection = () => {
     switch (currentSection) {
@@ -730,6 +966,10 @@ function App() {
       case 'research': return <Research />;
       case 'projects': return <Projects onProjectSelect={setSelectedProject} />;
       case 'hardware': return <HardwareInterfaces />;
+      case 'playground': return <CreativeWorks onProjectSelect={setSelectedProject} />;
+      case 'art_design': return <ArtDesign />;
+      case 'studio': return <Gallery />;
+      case 'contact': return <ContactSection />;
       default: return <SystemOverview />;
     }
   };
@@ -737,7 +977,10 @@ function App() {
   return (
     <div className="layout-container">
       <Sidebar currentSection={currentSection} onNavigate={setCurrentSection} />
-      <main className="main-content">
+      <main
+        className="main-content"
+        style={(currentSection === 'studio' || currentSection === 'art_design') ? { padding: 0, maxWidth: 'none', marginLeft: '220px' } : {}}
+      >
         {renderSection()}
       </main>
       <ProjectModal

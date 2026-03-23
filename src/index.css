@@ -1,65 +1,43 @@
 :root {
-  /* Engineering Notebook Palette */
-  --bg-main: #F9FAFB;
-  --bg-surface: #FFFFFF;
-  --text-primary: #111827;
-  --text-secondary: #4B5563;
-  --border-lines: #E5E7EB;
-  --accent-main: #16A34A;
-  /* DSP Green */
-  --accent-secondary: #D97706;
-  /* Muted Amber */
-  --code-block: #F3F4F6;
+  /* Organic/Forest Palette */
+  --bg-main: #fcfaf2;
+  /* Warm Cream White */
+  --bg-surface: #f2efe4;
+  /* Muted Tan/Cream Surface */
+  --accent-main: #2f361a;
+  /* Dark Forest Green */
+  --text-primary: #1a1c12;
+  /* Deep Earthy Black */
+  --text-secondary: #4a4d3f;
+  /* Muted Olive Gray */
+  --border-lines: #dcd9c6;
+  /* Soft Stone Lines */
 
   /* Typography */
-  --font-mono: 'JetBrains Mono', 'IBM Plex Mono', monospace;
-  --font-body: 'Inter', 'Source Sans 3', sans-serif;
+  --font-display: 'Oswald', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Layout */
+  --sidebar-width: 220px;
 }
 
 html {
-  font-size: 112.5%;
-  /* 18px base size */
-}
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+  font-size: 16px;
+  scroll-behavior: smooth;
 }
 
 body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-body);
   background-color: var(--bg-main);
   color: var(--text-primary);
-  font-family: var(--font-body);
-  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
-  min-height: 100vh;
-
-  /* Light grid background */
-  background-image:
-    linear-gradient(var(--border-lines) 1px, transparent 1px),
-    linear-gradient(90deg, var(--border-lines) 1px, transparent 1px);
-  background-size: 40px 40px;
-  background-position: 0 0;
+  line-height: 1.5;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-code,
-pre {
-  font-family: var(--font-mono);
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-/* Custom Scrollbar */
+/* Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -69,331 +47,69 @@ a {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--border-lines);
-  border-radius: 4px;
+  background: #333;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--text-secondary);
+  background: var(--accent-main);
 }
 
-/* Utility classes for layout */
+/* Layout Container */
 .layout-container {
   display: flex;
   min-height: 100vh;
 }
 
+/* Sidebar (New Brand Block Style) */
 .sidebar {
-  width: 280px;
-  background: var(--bg-surface);
-  border-right: 1px solid var(--border-lines);
-  padding: 2rem;
-  position: fixed;
-  height: 100vh;
-  overflow-y: auto;
+  width: var(--sidebar-width);
+  /* Wider, bolder sidebar */
+  background-color: var(--accent-main);
+  /* Red Background */
+  color: white;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  padding: 3rem 2rem;
+  position: fixed;
+  height: 100vh;
+  z-index: 100;
+  /* No border, just solid block */
 }
 
+/* Main Content Area */
 .main-content {
-  margin-left: 280px;
+  margin-left: var(--sidebar-width);
+  /* Match sidebar width */
   flex: 1;
-  padding: 4rem;
-  max-width: none;
+  padding: 4rem 5vw;
+  /* Generous padding */
+  max-width: 1600px;
 }
 
-/* Responsive Animations */
-.fade-in {
-  animation: fadeIn 0.4s ease-out forwards;
+/* Typography Utilities */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  margin: 0;
 }
 
-@media (prefers-reduced-motion: reduce) {
-
-  .fade-in,
-  .animate-flow,
-  .modal-content,
-  .modal-overlay {
-    animation: none !important;
-    transition: none !important;
-  }
-}
-
-/* Layout Utilities */
-.profile-section {
-  display: flex;
-  gap: 3rem;
-  align-items: flex-start;
-  flex-wrap: wrap;
-}
-
-.profile-text {
-  flex: 1;
-  min-width: 300px;
-  font-size: 1rem;
-  color: var(--text-secondary);
-}
-
-.profile-image-container {
-  flex-shrink: 0;
-}
-
-.profile-image {
-  width: 360px;
-  height: auto;
-  border-radius: 8px;
-  border: 1px solid var(--border-lines);
-  filter: grayscale(20%) contrast(1.1);
-}
-
-.technical-skills-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-}
-
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1rem;
-  font-family: var(--font-mono);
-  font-family: var(--font-mono);
-  font-size: 0.9rem;
-}
-
-/* Resume Button */
-.resume-button {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 0.75rem 1.5rem;
-  background-color: var(--bg-surface);
-  color: var(--text-primary);
-  border: 1px solid var(--border-lines);
-  border-radius: 4px;
-  font-family: var(--font-mono);
-  font-size: 0.95rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s ease;
+a {
+  color: inherit;
   text-decoration: none;
-  margin-top: 2rem;
-}
-
-.resume-button:hover {
-  background-color: var(--code-block);
-  border-color: var(--accent-main);
-  color: var(--accent-main);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-}
-
-/* Project Build Log */
-.project-article {
-  margin-bottom: 4rem;
-  padding-bottom: 3rem;
-  border-bottom: 1px solid var(--border-lines);
-}
-
-.project-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  margin-bottom: 0.5rem;
-  font-family: var(--font-mono);
-  font-size: 0.875rem;
-  color: var(--text-secondary);
-}
-
-.project-grid {
-  display: grid;
-  grid-template-columns: 150px 1fr;
-  gap: 2rem;
-  margin-bottom: 2rem;
-}
-
-.project-meta {
-  font-family: var(--font-mono);
-  font-size: 0.9rem;
-  color: var(--text-secondary);
-}
-
-.project-content {
-  font-size: 1rem;
-  line-height: 1.6;
-  color: var(--text-secondary);
-}
-
-.project-content-inner {
-  display: flex;
-  gap: 2rem;
-  align-items: flex-start;
-  flex-wrap: wrap;
-}
-
-.project-image {
-  width: 340px;
-  height: auto;
-  border-radius: 4px;
-  border: 1px solid var(--border-lines);
-  flex-shrink: 0;
-}
-
-/* Hardware Grid */
-.hardware-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  margin-bottom: 4rem;
-}
-
-/* Mobile Responsiveness */
-@media (max-width: 1024px) {
-  .layout-container {
-    flex-direction: column;
-  }
-
-  .sidebar {
-    width: 100%;
-    height: auto;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    /* Ensure it stays on top */
-    border-right: none;
-    border-bottom: 1px solid var(--border-lines);
-    padding: 1rem 1.5rem;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    background: var(--bg-surface);
-    /* Ensure background is opaque */
-  }
-
-  /* Adjust sidebar internal layout for horizontal bar */
-  .sidebar .sidebar-header {
-    margin-bottom: 0;
-  }
-
-  .sidebar .sidebar-header h1 {
-    font-size: 1.1rem;
-    margin-bottom: 0;
-  }
-
-  .sidebar .sidebar-header div {
-    display: none;
-    /* Hide subtitle on mobile header to save space */
-  }
-
-  .sidebar nav {
-    margin-top: 0 !important;
-    flex: 0 !important;
-  }
-
-  .sidebar nav ul {
-    display: flex;
-    gap: 1.5rem;
-    margin-bottom: 0;
-  }
-
-  .sidebar nav li {
-    margin-bottom: 0 !important;
-  }
-
-  .sidebar nav button span {
-    display: none;
-    /* Hide text label on small mobile, show only icon? Or keep simplified */
-  }
-
-  .sidebar-footer {
-    display: none;
-  }
-
-  .main-content {
-    margin-left: 0;
-    padding: 1.5rem;
-    /* Reduced padding */
-    padding-top: 2rem;
-  }
-
-  /* Profile Section Mobile */
-  .profile-section {
-    flex-direction: column-reverse;
-    /* Image on top? Or text on top? usually image on top is better, or keep standard flow */
-    gap: 2rem;
-  }
-
-  .profile-image {
-    width: 100%;
-    max-width: 400px;
-  }
-
-  .profile-text {
-    min-width: 0;
-    /* Allow shrinking */
-  }
-
-  /* Project Grid Mobile - FORCE STACKING */
-  .project-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-
-  .project-meta {
-    width: 100%;
-    margin-bottom: 0.5rem;
-  }
-
-  .project-content-inner {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    width: 100%;
-  }
-
-  .project-image {
-    width: 100% !important;
-    max-width: 100% !important;
-    height: auto;
-  }
-
-  /* Hardware Grid Mobile */
-  .hardware-grid {
-    grid-template-columns: 1fr;
-    /* Full width cards */
-  }
-
-  .technical-skills-grid {
-    grid-template-columns: 1fr;
-  }
-
-  h2 {
-    font-size: 1.75rem !important;
-  }
-
-  h3 {
-    font-size: 1.3rem !important;
-  }
-}
-
-@media (max-width: 480px) {
-
-  /* Even smaller screens */
-  .sidebar {
-    padding: 0.75rem 1rem;
-  }
-
-  .main-content {
-    padding: 1rem;
-  }
 }
 
 /* Animations */
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(20px);
   }
 
   to {
@@ -403,107 +119,147 @@ a {
 }
 
 .fade-in {
-  animation: fadeIn 0.4s ease-out forwards;
+  animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-/* Waveform Flow Animation */
-@keyframes signalFlow {
-  from {
-    transform: translateX(-50%);
+/* Buttons */
+button {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Section Header Style (Standardized for Redesign) */
+.section-header {
+  margin-bottom: 4rem;
+  border-left: 8px solid var(--accent-main);
+  padding-left: 2rem;
+}
+
+.section-title {
+  font-size: 5rem;
+  /* Massive typography */
+  line-height: 0.9;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+/* Grid Utilities */
+.swiss-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 2rem;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .sidebar {
+    width: 200px;
   }
 
-  to {
-    transform: translateX(0);
+  .main-content {
+    margin-left: 200px;
   }
 }
 
-.animate-flow {
-  animation: signalFlow 8s linear infinite;
-  will-change: transform;
+@media (max-width: 768px) {
+  .layout-container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+    padding: 2rem;
+  }
+
+  .main-content {
+    margin-left: 0;
+    padding: 2rem 1.5rem;
+  }
+
+  .swiss-grid {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .section-title {
+    font-size: 3rem;
+  }
 }
 
-/* Modal Styles */
+/* Project Modal (Center & Scroll) */
 .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(8px);
-  z-index: 1000;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  padding: 2rem;
+  z-index: 9999;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 2rem;
-  animation: fadeIn 0.2s ease-out;
+  backdrop-filter: blur(8px);
 }
 
 .modal-content {
   background: var(--bg-surface);
-  border: 1px solid var(--border-lines);
+  border: 1px solid var(--accent-main);
   padding: 3rem;
-  width: 90vw;
-  max-width: 1100px;
+  width: 100%;
+  max-width: 900px;
   max-height: 90vh;
+  /* Viewport height limit */
   overflow-y: auto;
+  /* Internal scroll */
   position: relative;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
-  animation: popIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5);
+  animation: modalPop 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .modal-close {
   position: absolute;
   top: 1.5rem;
   right: 1.5rem;
-  background: none;
+  background: transparent;
   border: none;
   color: var(--text-secondary);
   cursor: pointer;
   transition: color 0.2s;
-  padding: 0.5rem;
 }
 
 .modal-close:hover {
-  color: var(--text-primary);
-}
-
-@keyframes popIn {
-  from {
-    transform: scale(0.95) translateY(10px);
-    opacity: 0;
-  }
-
-  to {
-    transform: scale(1) translateY(0);
-    opacity: 1;
-  }
-}
-
-/* Modal Responsive Styles */
-@media (max-width: 1024px) {
-  .modal-content {
-    padding: 1.5rem;
-    width: 95vw;
-    margin: 1rem;
-    max-height: 85vh;
-  }
+  color: var(--accent-main);
 }
 
 .modal-header-meta {
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
-  margin-bottom: 0.5rem;
   font-family: var(--font-mono);
-  font-size: 0.875rem;
-  color: var(--text-secondary);
+  color: var(--accent-main);
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
 }
 
-@media (max-width: 480px) {
-  .modal-header-meta {
-    flex-direction: column;
-    gap: 0.25rem;
-    align-items: flex-start;
+@keyframes modalPop {
+  from {
+    opacity: 0;
+    transform: scale(0.98) translateY(10px);
   }
+
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Profile Photo Hover Effect */
+.profile-photo {
+  width: 100%;
+  height: auto;
+  display: block;
 }

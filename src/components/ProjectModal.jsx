@@ -53,6 +53,21 @@ const ProjectModal = ({ isOpen, onClose, project }) => {
                             ))}
                         </div>
                     )}
+
+                    {project.video && (
+                        <div style={{ marginTop: '2rem', borderRadius: '4px', overflow: 'hidden', border: '1px solid var(--border-lines)' }}>
+                            <iframe
+                                width="100%"
+                                height="450"
+                                src={project.video}
+                                title="Project Video"
+                                frameBorder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowFullScreen
+                                style={{ display: 'block' }}
+                            ></iframe>
+                        </div>
+                    )}
                 </div>
             </div>
         </div>
