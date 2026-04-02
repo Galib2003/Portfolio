@@ -151,8 +151,8 @@ Error generating stack: `+a.message+`
             }
             .art-grid-item img {
               width: 100%;
-              aspect-ratio: 1 / 1;
-              object-fit: cover;
+              height: auto;
+              object-fit: contain;
               display: block;
               transition: opacity 0.2s ease;
             }
