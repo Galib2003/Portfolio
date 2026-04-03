@@ -44,16 +44,6 @@ const ProjectModal = ({ isOpen, onClose, project }) => {
                 <div className="modal-body" style={{ fontSize: '1rem', lineHeight: '1.6', color: 'var(--text-secondary)' }}>
                     {project.fullDescription || project.children}
 
-                    {/* Placeholder for images if provided later */}
-                    {/* Images display: Prefer modalImages if available, else fallback to images */}
-                    {(project.modalImages || project.images) && (project.modalImages || project.images).length > 0 && (
-                        <div style={{ marginTop: '2rem', display: 'grid', gridTemplateColumns: '1fr', gap: '1rem' }}>
-                            {(project.modalImages || project.images).map((img, idx) => (
-                                <img key={idx} src={img} alt={`Project detail ${idx}`} style={{ width: '100%', borderRadius: '4px', border: '1px solid var(--border-lines)' }} />
-                            ))}
-                        </div>
-                    )}
-
                     {project.video && (
                         <div style={{ marginTop: '2rem', borderRadius: '4px', overflow: 'hidden', border: '1px solid var(--border-lines)' }}>
                             <iframe
@@ -68,6 +58,17 @@ const ProjectModal = ({ isOpen, onClose, project }) => {
                             ></iframe>
                         </div>
                     )}
+
+                    {/* Placeholder for images if provided later */}
+                    {/* Images display: Prefer modalImages if available, else fallback to images */}
+                    {(project.modalImages || project.images) && (project.modalImages || project.images).length > 0 && (
+                        <div style={{ marginTop: '2rem', display: 'grid', gridTemplateColumns: '1fr', gap: '1rem' }}>
+                            {(project.modalImages || project.images).map((img, idx) => (
+                                <img key={idx} src={img} alt={`Project detail ${idx}`} style={{ width: '100%', borderRadius: '4px', border: '1px solid var(--border-lines)' }} />
+                            ))}
+                        </div>
+                    )}
+
                 </div>
             </div>
         </div>

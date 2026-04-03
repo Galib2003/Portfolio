@@ -511,7 +511,7 @@ const Research = () => (
   </div>
 );
 
-const BuildLog = ({ title, goal, stack, date, status, images, repoLink, videoLink, onSeeMore, children }) => (
+const BuildLog = ({ title, stack, date, status, images, repoLink, videoLink, onSeeMore, children }) => (
   <article style={{ marginBottom: '6rem' }}>
     <div className="swiss-grid">
       {/* Image Area - Span 7 */}
@@ -594,7 +594,7 @@ const BuildLog = ({ title, goal, stack, date, status, images, repoLink, videoLin
 const Projects = ({ onProjectSelect }) => (
   <div className="section-content fade-in">
     <div className="section-header">
-      <h2 className="section-title">SELECTED<br />WORKS</h2>
+      <h2 className="section-title">HARDWARE<br />PROJECTS</h2>
     </div>
 
     {PROJECTS_DATA.map((project, index) => (
@@ -611,72 +611,6 @@ const Projects = ({ onProjectSelect }) => (
 
 
 
-const HardwareInterfaces = () => {
-  const hardwareItems = [
-    {
-      title: "STM32 Nucleo-64",
-      subtitle: "The Workhorse",
-      specs: ["ARM Cortex-M4 @ 180MHz", "FPU & DSP Instructions", "16-bit ADCs"],
-      useCase: "Primary choice for audio processing and complex control loops requiring deterministic timing.",
-      image: "images/guitar_pedal_setup.jpg" // Using Guitar Pedal setup as it features STM32
-    },
-    {
-      title: "Tiva C Series (TM4C123)",
-      subtitle: "Real-Time Control",
-      specs: ["ARM Cortex-M4F @ 80MHz", "Double Precision FPU", "High-Drive GPIOs"],
-      useCase: "Go-to platform for RTOS development and educational embedded systems projects.",
-      image: "images/rtos_board.jpg"
-    },
-    {
-      title: "NVIDIA Jetson Orin NX",
-      subtitle: "AI at the Edge",
-      specs: ["100 TOPS AI Performance", "Ampere GPU Architecture", "ROS 2 Support"],
-      useCase: "Sensor fusion and path planning for autonomous robotics (IGVC).",
-      image: "images/igvc_robot.jpg"
-    },
-    {
-      title: "Cyclone IV FPGA",
-      subtitle: "Digital Logic Fabric",
-      specs: ["6K Logic Elements", "Embedded Multipliers", "PLLs for Clock Gen"],
-      useCase: "Custom digital peripherals and high-speed parallel I/O interfaces.",
-      image: "images/lcr_meter_circuit.jpg" // Visual placeholder for complex circuit
-    }
-  ];
-
-  return (
-    <div className="section-content fade-in">
-      <div className="section-header">
-        <h2 className="section-title">HARDWARE<br />ARSENAL</h2>
-      </div>
-
-      <div className="swiss-grid">
-        {hardwareItems.map((item, index) => (
-          <div key={index} style={{ gridColumn: 'span 6', background: 'var(--bg-surface)', padding: '2rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            <div style={{ height: '240px', overflow: 'hidden', marginBottom: '1rem' }}>
-              <img src={item.image} alt={item.title} style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'grayscale(100%)' }} />
-            </div>
-            <h3 style={{ fontSize: '1.5rem' }}>{item.title}</h3>
-            <p style={{ color: 'var(--accent-main)', fontWeight: 700 }}>{item.subtitle.toUpperCase()}</p>
-            <ul style={{ listStyle: 'none', padding: 0, color: 'var(--text-secondary)' }}>
-              {item.specs.map(spec => <li key={spec} style={{ borderBottom: '1px solid var(--border-lines)', padding: '0.5rem 0' }}>{spec}</li>)}
-            </ul>
-          </div>
-        ))}
-      </div>
-
-      <div style={{ padding: '2rem', background: 'var(--bg-surface)', border: '1px dashed var(--border-lines)', textAlign: 'center', marginTop: '4rem' }}>
-        <h4 style={{ fontSize: '1.1rem', color: 'var(--text-primary)', marginBottom: '1rem' }}>Lab Instrumentation</h4>
-        <div style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap', justifyContent: 'center', color: 'var(--text-secondary)', fontFamily: 'var(--font-mono)', fontSize: '0.9rem' }}>
-          <span>[ Tektronix Oscilloscope ]</span>
-          <span>[ Logic Analyzer ]</span>
-          <span>[ Soldering Station ]</span>
-          <span>[ Digital Multimeter ]</span>
-        </div>
-      </div>
-
-    </div>
-  );
-};
 
 const ContactSection = () => (
   <div className="section-content fade-in">
@@ -891,8 +825,8 @@ const ArtDesign = () => {
             }
             .art-grid-item img {
               width: 100%;
-              aspect-ratio: 1 / 1;
-              object-fit: cover;
+              height: auto;
+              object-fit: contain;
               display: block;
               transition: opacity 0.2s ease;
             }
@@ -935,7 +869,6 @@ const PrintLayout = () => (
     <div className="print-section"><SystemOverview /></div>
     <div className="print-section"><Research /></div>
     <div className="print-section"><Projects onProjectSelect={() => { }} /></div>
-    <div className="print-section"><HardwareInterfaces /></div>
     <div className="print-section"><CreativeWorks onProjectSelect={() => { }} /></div>
     <div className="print-section"><ArtDesign /></div>
     <div className="print-section"><Gallery /></div>
@@ -965,7 +898,6 @@ function App() {
       case 'overview': return <SystemOverview />;
       case 'research': return <Research />;
       case 'projects': return <Projects onProjectSelect={setSelectedProject} />;
-      case 'hardware': return <HardwareInterfaces />;
       case 'playground': return <CreativeWorks onProjectSelect={setSelectedProject} />;
       case 'art_design': return <ArtDesign />;
       case 'studio': return <Gallery />;

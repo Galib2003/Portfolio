@@ -4,12 +4,11 @@ const Sidebar = ({ currentSection, onNavigate }) => {
     const navItems = [
         { id: 'overview', label: 'Overview', number: '01' },
         { id: 'research', label: 'Research', number: '02' },
-        { id: 'projects', label: 'Projects', number: '03' },
-        { id: 'hardware', label: 'Hardware', number: '04' },
-        { id: 'playground', label: 'Playground', number: '05' },
-        { id: 'art_design', label: 'Art & Design', number: '06' },
-        { id: 'studio', label: 'Gallery', number: '07' },
-        { id: 'contact', label: 'Contact', number: '08' },
+        { id: 'projects', label: 'Hardware Projects', number: '03' },
+        { id: 'playground', label: 'Playground', number: '04' },
+        { id: 'art_design', label: 'Art & Design', number: '05' },
+        { id: 'studio', label: 'Gallery', number: '06' },
+        { id: 'contact', label: 'Contact', number: '07' },
     ];
 
     return (
