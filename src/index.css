@@ -4,8 +4,8 @@
   /* Light Sky Blue */
   --bg-surface: #E7F2F6;
   /* Soft Surface Blue */
-  --accent-main: #4b5335;
-  /* Lighter Muted Tree Green */
+  --accent-main: #2d3028;
+  /* Deep Dark Green/Grey */
   --text-primary: #1a1c12;
   /* Deep Earthy Black */
   --text-secondary: #4a4d3f;
@@ -65,7 +65,7 @@ body {
   width: var(--sidebar-width);
   /* Wider, bolder sidebar */
   background-color: var(--accent-main);
-  /* Red Background */
+  /* Dark Sidebar Background */
   color: white;
   display: flex;
   flex-direction: column;

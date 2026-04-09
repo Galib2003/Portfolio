@@ -42,7 +42,6 @@ const Sidebar = ({ currentSection, onNavigate }) => {
                             display: 'flex',
                             alignItems: 'center',
                             gap: '1.5rem',
-                            opacity: currentSection === item.id ? 1 : 0.7,
                             transition: 'opacity 0.2s'
                         }}
                     >
@@ -63,8 +62,7 @@ const Sidebar = ({ currentSection, onNavigate }) => {
             <div style={{ marginTop: 'auto', color: 'white' }}>
                 <p style={{
                     fontFamily: 'var(--font-mono)',
-                    fontSize: '0.8rem',
-                    opacity: 0.8
+                    fontSize: '0.8rem'
                 }}>
                     +1 682 376 9169<br />
                     gar5128@mavs.uta.edu
