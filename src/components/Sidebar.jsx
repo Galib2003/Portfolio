@@ -13,12 +13,13 @@ const Sidebar = ({ currentSection, onNavigate }) => {
 
     return (
         <aside className="sidebar">
-            <div style={{ marginBottom: '4rem' }}>
+            <div style={{ marginBottom: '4rem', color: 'white' }}>
                 <h1 style={{
                     fontSize: '3rem',
                     lineHeight: '1',
                     marginBottom: '0.5rem',
-                    letterSpacing: '-0.02em'
+                    letterSpacing: '-0.02em',
+                    color: 'white'
                 }}>
                     GALIB<br />RAID
                 </h1>
@@ -33,7 +34,7 @@ const Sidebar = ({ currentSection, onNavigate }) => {
                         style={{
                             background: 'transparent',
                             border: 'none',
-                            color: 'var(--bg-main)',
+                            color: 'white',
                             textAlign: 'left',
                             fontSize: '1.25rem',
                             padding: '0.5rem 0',
@@ -41,7 +42,7 @@ const Sidebar = ({ currentSection, onNavigate }) => {
                             display: 'flex',
                             alignItems: 'center',
                             gap: '1.5rem',
-                            opacity: currentSection === item.id ? 1 : 0.6,
+                            opacity: currentSection === item.id ? 1 : 0.7,
                             transition: 'opacity 0.2s'
                         }}
                     >
@@ -59,11 +60,11 @@ const Sidebar = ({ currentSection, onNavigate }) => {
                 ))}
             </nav>
 
-            <div style={{ marginTop: 'auto' }}>
+            <div style={{ marginTop: 'auto', color: 'white' }}>
                 <p style={{
                     fontFamily: 'var(--font-mono)',
                     fontSize: '0.8rem',
-                    opacity: 0.6
+                    opacity: 0.8
                 }}>
                     +1 682 376 9169<br />
                     gar5128@mavs.uta.edu
