@@ -113,14 +113,14 @@ Error generating stack: `+a.message+`
             gap: 0px; 
             line-height: 0; 
           }
-          .studio-grid-item {
-            width: 100%;
-            margin: 0;
-            padding: 0;
-            position: relative;
-            overflow: hidden;
-            background: var(--bg-main);
-          }
+            .studio-grid-item {
+              width: 100%;
+              margin: 0;
+              padding: 0;
+              position: relative;
+              overflow: hidden;
+              background: white;
+            }
           .studio-grid-item img {
             width: 100%;
             aspect-ratio: 16 / 9;
@@ -147,7 +147,7 @@ Error generating stack: `+a.message+`
               padding: 0;
               position: relative;
               overflow: hidden;
-              background: var(--bg-main);
+              background: white;
             }
             .art-grid-item img {
               width: 100%;
@@ -162,4 +162,4 @@ Error generating stack: `+a.message+`
             @media (max-width: 640px) {
               .art-masonry-grid { grid-template-columns: 1fr; }
             }
-          `}}),c.jsx("div",{className:"art-masonry-grid",children:Tu&&Tu.length>0?Tu.map((t,l)=>c.jsx("div",{className:"art-grid-item",children:c.jsx("img",{src:t.imageUrl,alt:t.alt})},l)):c.jsxs("div",{style:{padding:"4rem",textAlign:"center",color:"var(--text-secondary)",border:"1px dashed var(--border-lines)"},children:[c.jsx(am,{size:48,style:{marginBottom:"1rem",opacity:.5,margin:"0 auto"}}),c.jsx("p",{style:{fontSize:"1.2rem",marginBottom:"0.5rem"},children:"The Art & Design gallery is empty."}),c.jsx("p",{style:{fontSize:"0.85rem",fontFamily:"var(--font-mono)"},children:"Upload images to public/images/art_design and run 'npm run update-studio'."})]})})]})]}),Uy=()=>c.jsxs("div",{className:"print-layout",children:[c.jsx("div",{className:"print-section",children:c.jsx(Sc,{})}),c.jsx("div",{className:"print-section",children:c.jsx(nm,{})}),c.jsx("div",{className:"print-section",children:c.jsx(im,{onProjectSelect:()=>{}})}),c.jsx("div",{className:"print-section",children:c.jsx(cm,{onProjectSelect:()=>{}})}),c.jsx("div",{className:"print-section",children:c.jsx(sm,{})}),c.jsx("div",{className:"print-section",children:c.jsx(fm,{})}),c.jsx("div",{className:"print-section",children:c.jsx(um,{})})]});function Ny(){const[t,l]=Kt.useState("overview"),[e,a]=Kt.useState(null);if(Kt.useEffect(()=>{window.scrollTo(0,0)},[t]),new URLSearchParams(window.location.search).get("print")==="true")return c.jsx(Uy,{});const u=()=>{switch(t){case"overview":return c.jsx(Sc,{});case"research":return c.jsx(nm,{});case"projects":return c.jsx(im,{onProjectSelect:a});case"playground":return c.jsx(cm,{onProjectSelect:a});case"art_design":return c.jsx(sm,{});case"studio":return c.jsx(fm,{});case"contact":return c.jsx(um,{});default:return c.jsx(Sc,{})}};return c.jsxs("div",{className:"layout-container",children:[c.jsx(fy,{currentSection:t,onNavigate:l}),c.jsx("main",{className:"main-content",style:t==="studio"||t==="art_design"?{padding:0,maxWidth:"none",marginLeft:"220px"}:{},children:u()}),c.jsx(_y,{isOpen:!!e,onClose:()=>a(null),project:e})]})}cy.createRoot(document.getElementById("root")).render(c.jsx(Kt.StrictMode,{children:c.jsx(Ny,{})}));
+          `}}),c.jsx("div",{className:"art-masonry-grid",children:Tu&&Tu.length>0?Tu.map((t,l)=>c.jsx("div",{className:"art-grid-item",children:c.jsx("img",{src:t.imageUrl,alt:t.alt})},l)):c.jsxs("div",{style:{padding:"4rem",textAlign:"center",color:"var(--text-secondary)",border:"1px dashed var(--border-lines)"},children:[c.jsx(am,{size:48,style:{marginBottom:"1rem",opacity:.5,margin:"0 auto"}}),c.jsx("p",{style:{fontSize:"1.2rem",marginBottom:"0.5rem"},children:"The Art & Design gallery is empty."}),c.jsx("p",{style:{fontSize:"0.85rem",fontFamily:"var(--font-mono)"},children:"Upload images to public/images/art_design and run 'npm run update-studio'."})]})})]})]}),Uy=()=>c.jsxs("div",{className:"print-layout",children:[c.jsx("div",{className:"print-section",children:c.jsx(Sc,{})}),c.jsx("div",{className:"print-section",children:c.jsx(nm,{})}),c.jsx("div",{className:"print-section",children:c.jsx(im,{onProjectSelect:()=>{}})}),c.jsx("div",{className:"print-section",children:c.jsx(cm,{onProjectSelect:()=>{}})}),c.jsx("div",{className:"print-section",children:c.jsx(sm,{})}),c.jsx("div",{className:"print-section",children:c.jsx(fm,{})}),c.jsx("div",{className:"print-section",children:c.jsx(um,{})})]});function Ny(){const[t,l]=Kt.useState("overview"),[e,a]=Kt.useState(null);if(Kt.useEffect(()=>{window.scrollTo(0,0)},[t]),new URLSearchParams(window.location.search).get("print")==="true")return c.jsx(Uy,{});const u=()=>{switch(t){case"overview":return c.jsx(Sc,{});case"research":return c.jsx(nm,{});case"projects":return c.jsx(im,{onProjectSelect:a});case"playground":return c.jsx(cm,{onProjectSelect:a});case"art_design":return c.jsx(sm,{});case"studio":return c.jsx(fm,{});case"contact":return c.jsx(um,{});default:return c.jsx(Sc,{})}};return c.jsxs("div",{className:"layout-container",style:{backgroundColor:t==="overview"?"var(--bg-main)":"white"},children:[c.jsx(fy,{currentSection:t,onNavigate:l}),c.jsx("main",{className:"main-content",style:t==="studio"||t==="art_design"?{padding:0,maxWidth:"none",marginLeft:"220px"}:{},children:u()}),c.jsx(_y,{isOpen:!!e,onClose:()=>a(null),project:e})]})}cy.createRoot(document.getElementById("root")).render(c.jsx(Kt.StrictMode,{children:c.jsx(Ny,{})}));
