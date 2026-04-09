@@ -31,6 +31,11 @@ const PROJECTS_DATA = [
     ),
     fullDescription: (
       <>
+        <h4 style={{ fontSize: '1.1rem', color: 'var(--text-primary)', marginTop: '0.5rem', marginBottom: '0.5rem' }}>The Inspiration</h4>
+        <p style={{ marginBottom: '1.5rem', color: 'var(--text-secondary)' }}>
+          Usually when I am walking down the street or anytime I don't have my guitar with me, I make different kinds of rhythms in my head starting from pop or heavy metal, ANY RHYTHM. I often wished having a pocket device would be really helpful for me that will play the riffs I am thinking in my brain or playing with my mouth. This is a result of that issue. This product can be improved to make it as creative as the user wants. In future, I plan to use dsp to make this device the best portable device to play any instrument in the form of a video game console or controller look and feel.
+        </p>
+
         <p style={{ marginBottom: '1rem' }}>
           Pocket Riffer is a compact device designed to translate the guitarist's interaction model into a portable, button-based instrument. 
           By combining chord selection with rhythmic strumming, it allows anyone to play complex riffs with instant tactile feedback.
