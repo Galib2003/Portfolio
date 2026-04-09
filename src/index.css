@@ -1,17 +1,17 @@
 :root {
-  /* Organic/Forest Palette */
-  --bg-main: #fcfaf2;
-  /* Warm Cream White */
-  --bg-surface: #f2efe4;
-  /* Muted Tan/Cream Surface */
+  /* Blue Horizon Palette */
+  --bg-main: #D9ECF2;
+  /* Light Sky Blue */
+  --bg-surface: #E7F2F6;
+  /* Soft Surface Blue */
   --accent-main: #2f361a;
   /* Dark Forest Green */
   --text-primary: #1a1c12;
   /* Deep Earthy Black */
   --text-secondary: #4a4d3f;
   /* Muted Olive Gray */
-  --border-lines: #dcd9c6;
-  /* Soft Stone Lines */
+  --border-lines: #C5D8DF;
+  /* Cool Stone Lines */
 
   /* Typography */
   --font-display: 'Oswald', sans-serif;
