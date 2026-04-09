@@ -347,27 +347,13 @@ const SystemOverview = () => (
           marginBottom: '1rem',
           position: 'relative'
         }}>
-          <div style={{ position: 'relative', overflow: 'hidden', border: '1px solid var(--accent-main)' }}>
+          <div style={{ position: 'relative', overflow: 'hidden' }}>
             <img
               src="images/profile.jpg"
               alt="Rafiqul Islam"
               className="profile-photo"
               style={{ width: '100%', display: 'block' }}
             />
-            <div style={{
-              position: 'absolute',
-              bottom: 0,
-              left: 0,
-              background: 'var(--accent-main)',
-              color: 'var(--bg-main)',
-              padding: '0.25rem 0.75rem',
-              fontWeight: 700,
-              fontSize: '0.7rem',
-              letterSpacing: '0.05em',
-              zIndex: 10
-            }}>
-              EST. 2003
-            </div>
           </div>
         </div>
 
