@@ -42,10 +42,8 @@ const ProjectModal = ({ isOpen, onClose, project }) => {
                 </div>
 
                 <div className="modal-body" style={{ fontSize: '1rem', lineHeight: '1.6', color: 'var(--text-secondary)' }}>
-                    {project.fullDescription || project.children}
-
                     {project.video && (
-                        <div style={{ marginTop: '2rem', borderRadius: '4px', overflow: 'hidden', border: '1px solid var(--border-lines)' }}>
+                        <div style={{ marginBottom: '2rem', borderRadius: '4px', overflow: 'hidden', border: '1px solid var(--border-lines)' }}>
                             <iframe
                                 width="100%"
                                 height="450"
@@ -58,6 +56,8 @@ const ProjectModal = ({ isOpen, onClose, project }) => {
                             ></iframe>
                         </div>
                     )}
+
+                    {project.fullDescription || project.children}
 
                     {/* Placeholder for images if provided later */}
                     {/* Images display: Prefer modalImages if available, else fallback to images */}

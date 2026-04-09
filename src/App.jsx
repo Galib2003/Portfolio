@@ -10,6 +10,60 @@ const SHOW_RESUME = true; // Set to false to hide the resume section
 
 const PROJECTS_DATA = [
   {
+    title: "Pocket Riffer",
+    date: "2026-03",
+    status: "COMPLETED",
+    goal: "Handheld guitar riff player with real-time audio and OLED animation",
+    stack: ['C', 'STM32F446RE', 'I2S/DMA', 'IMA ADPCM', 'OLED', 'Python'],
+    video: "https://www.youtube.com/embed/7wMT74LZWrs",
+    videoLink: "https://youtu.be/7wMT74LZWrs?si=IFfak7mGfrXAzUNa",
+    images: [], 
+    description: (
+      <>
+        <p style={{ marginBottom: '1rem' }}>
+          A handheld guitar riff player built from scratch — hardware, firmware, and custom audio compression.
+          Play pre-recorded guitar riffs using buttons that mimic chords and strumming.
+        </p>
+        <p>
+          <strong>Highlight:</strong> Real-time ADPCM audio decoding and DMA streaming on bare-metal STM32 for zero-latency response.
+        </p>
+      </>
+    ),
+    fullDescription: (
+      <>
+        <p style={{ marginBottom: '1rem' }}>
+          Pocket Riffer is a compact device designed to translate the guitarist's interaction model into a portable, button-based instrument. 
+          By combining chord selection with rhythmic strumming, it allows anyone to play complex riffs with instant tactile feedback.
+        </p>
+
+        <h4 style={{ fontSize: '1.1rem', color: 'var(--text-primary)', marginTop: '1.5rem', marginBottom: '0.5rem' }}>How It Works</h4>
+        <p style={{ marginBottom: '1rem' }}>
+          The interaction mimics a real guitar: the left hand selects one of four chords, while the right hand controls the "strum" (Open strum, Palm-muted, or Kill switch). 
+          The system is fast enough to handle rapid rhythmic patterns like triplets without missing a beat.
+        </p>
+
+        <h4 style={{ fontSize: '1.1rem', color: 'var(--text-primary)', marginTop: '1.5rem', marginBottom: '0.5rem' }}>Visual Feedback</h4>
+        <p style={{ marginBottom: '1rem' }}>
+          A 0.96" OLED display features a live animation of a guitar string. Strumming triggers vibration patterns (loose for open, tight for muted) that settle naturally. 
+          It also includes a pixel-art "cat shredding" screensaver for idle mode.
+        </p>
+
+        <h4 style={{ fontSize: '1.1rem', color: 'var(--text-primary)', marginTop: '1.5rem', marginBottom: '0.5rem' }}>Technical Deep Dive</h4>
+        <ul style={{ listStyle: 'disc', listStylePosition: 'inside', color: 'var(--text-secondary)', marginBottom: '1rem' }}>
+          <li><strong>Audio Engine:</strong> IMA ADPCM compression (4:1) allows 33 seconds of high-quality audio to fit in the 512KB internal Flash memory.</li>
+          <li><strong>Real-time Response:</strong> DMA-driven I2S audio link to a PCM5102A DAC ensures zero-latency playback.</li>
+          <li><strong>Firmware:</strong> Bare-metal C implementation with non-blocking display updates and 1ms button scanning/debouncing.</li>
+          <li><strong>Custom Tooling:</strong> Python scripts for audio processing, image-to-bitmap conversion, and automated C code generation.</li>
+        </ul>
+
+        <h4 style={{ fontSize: '1.1rem', color: 'var(--text-primary)', marginTop: '1.5rem', marginBottom: '0.5rem' }}>What's Next</h4>
+        <p>
+          Developing a 3D-printed enclosure with mechanical switches, microSD support for expanded riff libraries, and a color display upgrade.
+        </p>
+      </>
+    )
+  },
+  {
     title: "Autonomous Outdoor Robot (IGVC)",
     date: "2025-Present",
     status: "IN_PROGRESS",
@@ -497,12 +551,43 @@ const Research = () => (
   </div>
 );
 
-const BuildLog = ({ title, stack, date, status, images, repoLink, videoLink, onSeeMore, children }) => (
+const BuildLog = ({ title, stack, date, status, images, repoLink, video, videoLink, onSeeMore, children }) => (
   <article style={{ marginBottom: '6rem' }}>
     <div className="swiss-grid">
-      {/* Image Area - Span 7 */}
+      {/* Image/Video Area - Span 7 */}
       <div style={{ gridColumn: 'span 7', position: 'relative' }}>
-        {images && images.length > 0 && (
+        {video ? (
+          <div style={{ position: 'relative', overflow: 'hidden', height: '0', paddingBottom: '56.25%' }}>
+            <iframe
+              src={video}
+              title={title}
+              style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '100%',
+                border: 'none',
+                filter: 'grayscale(20%)'
+              }}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+            ></iframe>
+            <div style={{
+              position: 'absolute',
+              bottom: 0,
+              left: 0,
+              background: 'var(--accent-main)',
+              color: 'var(--bg-main)',
+              padding: '0.5rem 1rem',
+              fontSize: '0.8rem',
+              fontWeight: 700,
+              zIndex: 10
+            }}>
+              {status}
+            </div>
+          </div>
+        ) : images && images.length > 0 && (
           <div style={{ position: 'relative', overflow: 'hidden' }}>
             <img
               src={images[0]}
