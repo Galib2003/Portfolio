@@ -385,11 +385,11 @@ const SystemOverview = () => (
 
       {/* Column 2: Stats/Focus Areas */}
       <div style={{ gridColumn: 'span 3', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-        <div style={{ background: 'var(--bg-surface)', padding: '2rem' }}>
-          <h4 style={{ marginBottom: '1rem' }}>Focus Areas</h4>
+        <div style={{ background: '#755941', padding: '2rem', color: 'white' }}>
+          <h4 style={{ marginBottom: '1rem', color: 'white' }}>Focus Areas</h4>
           <ul style={{ listStyle: 'none', padding: 0 }}>
             {['Graphic Design & Visual Communication', 'Film & Video Production', 'Creative Audio & Sound Design', 'Creative Technology & Engineering', 'Photography & Storytelling'].map(item => (
-              <li key={item} style={{ marginBottom: '0.5rem', borderBottom: '1px solid var(--border-lines)', paddingBottom: '0.5rem' }}>{item}</li>
+              <li key={item} style={{ marginBottom: '0.5rem', borderBottom: '1px solid rgba(255, 255, 255, 0.2)', paddingBottom: '0.5rem' }}>{item}</li>
             ))}
           </ul>
         </div>
