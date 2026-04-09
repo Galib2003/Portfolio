@@ -823,14 +823,14 @@ const Gallery = () => {
             gap: 0px; 
             line-height: 0; 
           }
-          .studio-grid-item {
-            width: 100%;
-            margin: 0;
-            padding: 0;
-            position: relative;
-            overflow: hidden;
-            background: var(--bg-main);
-          }
+            .studio-grid-item {
+              width: 100%;
+              margin: 0;
+              padding: 0;
+              position: relative;
+              overflow: hidden;
+              background: white;
+            }
           .studio-grid-item img {
             width: 100%;
             aspect-ratio: 16 / 9;
@@ -897,7 +897,7 @@ const ArtDesign = () => {
               padding: 0;
               position: relative;
               overflow: hidden;
-              background: var(--bg-main);
+              background: white;
             }
             .art-grid-item img {
               width: 100%;
@@ -983,7 +983,10 @@ function App() {
   };
 
   return (
-    <div className="layout-container">
+    <div 
+      className="layout-container"
+      style={{ backgroundColor: currentSection === 'overview' ? 'var(--bg-main)' : 'white' }}
+    >
       <Sidebar currentSection={currentSection} onNavigate={setCurrentSection} />
       <main
         className="main-content"
