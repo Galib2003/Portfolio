@@ -443,7 +443,7 @@ const SystemOverview = () => (
 
       {/* Column 2: Stats/Focus Areas */}
       <div style={{ gridColumn: 'span 3', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-        <div style={{ background: '#755941', padding: '2rem', color: 'white' }}>
+        <div style={{ background: 'var(--accent-main)', padding: '2rem', color: 'white' }}>
           <h4 style={{ marginBottom: '1rem', color: 'white' }}>Focus Areas</h4>
           <ul style={{ listStyle: 'none', padding: 0 }}>
             {['Graphic Design & Visual Communication', 'Film & Video Production', 'Creative Audio & Sound Design', 'Creative Technology & Engineering', 'Photography & Storytelling'].map(item => (
