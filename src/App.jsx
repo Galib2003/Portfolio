@@ -418,16 +418,16 @@ const SystemOverview = () => (
         </div>
 
         <p style={{ fontFamily: '"Source Sans 3", sans-serif', fontSize: '1.25rem', lineHeight: '1.6', marginBottom: '2rem', color: 'var(--text-primary)' }}>
-          I’ve always been drawn to creating. Starting with digital art and evolving into code, circuits, and sound.
+          The way I see it, an artist is someone who takes the senses and abilities we have as people—hearing, sight, touch, thought, movement—and tries to experience them as fully and honestly as possible.
         </p>
         <p style={{ fontFamily: '"Source Sans 3", sans-serif', fontSize: '1.25rem', lineHeight: '1.6', marginBottom: '2rem', color: 'var(--text-primary)' }}>
-          Studying <span style={{ color: 'var(--accent-main)', fontWeight: 600 }}>Computer Engineering</span> at UT Arlington shifted my perspective, helping me see technology not just as tools, but as creative mediums to shape visual, sonic, and interactive experiences.
+          I love sound in all its forms, and I make visual work too. Combining what we hear with what we see is how I explore ideas and stay close to the world around me.
         </p>
         <p style={{ fontFamily: '"Source Sans 3", sans-serif', fontSize: '1.25rem', lineHeight: '1.6', marginBottom: '2rem', color: 'var(--text-primary)' }}>
-          Now, I focus on blending creativity with an <strong style={{ color: 'var(--text-primary)', fontWeight: 600 }}>engineering mindset</strong> through photography, videography, audio, and design - building work that’s both structured and expressive.
+          I want to use <span style={{ color: 'var(--accent-main)', fontWeight: 600 }}>Computer Engineering</span> together with design, audio, and film to build experiences that tie audio, visuals, and the feel of a real space into one story—so art and people meet in a way that can actually help someone, not just impress them for a moment.
         </p>
         <p style={{ fontFamily: '"Source Sans 3", sans-serif', fontSize: '1.25rem', lineHeight: '1.6', marginBottom: '2rem', color: 'var(--text-primary)' }}>
-          At the core, I just want to create things that feel real - things people can <strong style={{ color: 'var(--accent-main)', fontWeight: 700 }}>See, Hear, and Connect</strong> with.
+          I&apos;m studying that path seriously at UT Arlington. What keeps me motivated is building things people can <strong style={{ color: 'var(--accent-main)', fontWeight: 700 }}>See, Hear, and Connect</strong> with—work that is both technical and human, and that I hope leaves something good behind.
         </p>
         <blockquote style={{
           borderLeft: '4px solid var(--accent-main)',
