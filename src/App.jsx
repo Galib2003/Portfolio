@@ -74,6 +74,8 @@ const PROJECTS_DATA = [
     goal: "Model optimization, safety integration, & autonomy",
     stack: ['Jetson Orin NX', 'TM4C123', 'LiDAR', 'Computer Vision', 'C++/Python'],
     repoLink: "https://github.com/Galib2003/IGVC.git",
+    video: "https://www.youtube.com/embed/p7ltDJHfODk?si=RPuG2Eboz6_tZ2h0",
+    videoLink: "https://youtu.be/p7ltDJHfODk?si=RPuG2Eboz6_tZ2h0",
     images: ['images/igvc_robot.jpg', 'images/igvc_cover_design.png', 'images/igvc_wiring_diagram.png'],
     description: (
       <>
